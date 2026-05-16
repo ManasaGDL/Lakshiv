@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lakshiv — Powering the Future</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #080c14;
+      --surface: #0e1420;
+      --border: rgba(0,200,255,0.12);
+      --cyan: #00c8ff;
+      --green: #00ff88;
+      --white: #f0f4ff;
+      --muted: #8a9bb8;
+      --card-bg: rgba(14,20,32,0.8);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── GLOW BLOBS ── */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 { width: 600px; height: 600px; background: var(--cyan); top: -200px; right: -200px; }
+    .blob-2 { width: 500px; height: 500px; background: var(--green); bottom: 100px; left: -200px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(8,12,20,0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.6rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo span { color: var(--white); -webkit-text-fill-color: var(--white); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 400;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      padding: 0.5rem 1.4rem;
+      border-radius: 4px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--cyan); color: var(--bg); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 4rem 4rem;
+      z-index: 1;
+    }
+    .hero-inner { max-width: 780px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem; color: var(--cyan);
+      margin-bottom: 2rem;
+      background: rgba(0,200,255,0.05);
+      animation: fadeUp 0.6s ease both;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1 .accent { color: var(--cyan); }
+    h1 .accent2 { color: var(--green); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      color: var(--bg);
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--cyan); }
+
+    /* ── STATS ── */
+    .stats {
+      display: flex; gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; z-index: 1; padding: 6rem 4rem; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--muted); max-width: 520px; line-height: 1.7; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--surface); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      margin-top: 3.5rem;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--card-bg);
+      padding: 2.2rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-card:hover { background: rgba(0,200,255,0.06); }
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── WHY US ── */
+    #why .why-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+      max-width: 700px;
+    }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+    .why-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      transition: border-color 0.2s;
+    }
+    .why-item:hover { border-color: var(--cyan); }
+    .why-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--cyan);
+      opacity: 0.4;
+      min-width: 2rem;
+    }
+    .why-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.3rem; }
+    .why-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    .why-visual {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--card-bg);
+      padding: 2.5rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .tech-tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      color: var(--cyan);
+      background: rgba(0,200,255,0.05);
+      margin: 0.2rem;
+    }
+    .why-visual-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--green);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      background: var(--card-bg);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--green); transform: translateY(-3px); }
+    .project-tag {
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 0.8rem;
+    }
+    .project-card h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; margin-bottom: 0.6rem;
+    }
+    .project-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+    .contact-box {
+      max-width: 600px;
+      margin: 3rem auto 0;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      background: var(--card-bg);
+    }
+    .contact-box p { color: var(--muted); margin-bottom: 2rem; line-height: 1.7; }
+    .contact-email {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      color: var(--cyan);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 2rem;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.7; }
+    .social-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .social-link {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section, #hero { padding: 5rem 1.5rem 3rem; }
+      .stats { gap: 1.5rem; flex-wrap: wrap; }
+      #why .why-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Lakshiv<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Coming Soon · India
+      </div>
+      <h1>
+        We Build<br/>
+        <span class="accent">Smart Systems</span><br/>
+        for the <span class="accent2">Future</span>
+      </h1>
+      <p class="hero-sub">
+        Lakshiv delivers end-to-end solutions in electrical engineering, IoT integration, home automation, and custom software — turning complex ideas into seamless, intelligent realities.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+        <button class="btn-ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat-val">50+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div>
+          <div class="stat-val">3+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+        <div>
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">Our Core Services</h2>
+    <p class="section-sub reveal">From wiring to code, we handle every layer of the modern technology stack — so you don't have to.</p>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <h3>Electrical Projects</h3>
+        <p>Complete electrical design, installation, and maintenance for residential, commercial, and industrial environments. Built to last, built to code.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🌐</span>
+        <h3>IoT Solutions</h3>
+        <p>Custom Internet of Things ecosystems — sensor networks, edge computing, cloud dashboards, and real-time data pipelines that connect your world.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <h3>Home Automation</h3>
+        <p>Smart lighting, climate control, security systems, and voice integration. Transform any home into an intelligent, energy-efficient living space.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💻</span>
+        <h3>Software Development</h3>
+        <p>Web apps, mobile apps, embedded firmware, and cloud platforms. Clean architecture, modern stacks, and scalable infrastructure tailored to your needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="section-label reveal">Our Edge</div>
+    <h2 class="section-title reveal">Why Choose Lakshiv?</h2>
+    <div class="why-grid">
+      <ul class="why-list">
+        <li class="why-item reveal">
+          <span class="why-num">01</span>
+          <div>
+            <h4>End-to-End Ownership</h4>
+            <p>We own every phase — design, build, test, and deploy. One team, zero handoff gaps.</p>
+          </div>
+        </li>
+        <li class="why-item reveal">
+          <span class="why-num">02</span>
+          <div>
+            <h4>Hardware + Software Expertise</h4>
+            <p>Rare combination of deep electrical knowledge and modern software skills in one organization.</p>
+          </div>
+        </li>
+        <li class="why-item reveal">
+          <span class="why-num">03</span>
+          <div>
+            <h4>Future-Proof Architecture</h4>
+            <p>Every solution is designed with scalability and longevity in mind — no tech debt, no dead ends.</p>
+          </div>
+        </li>
+        <li class="why-item reveal">
+          <span class="why-num">04</span>
+          <div>
+            <h4>Transparent Collaboration</h4>
+            <p>Regular updates, open communication, and milestone-based delivery you can always track.</p>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-title reveal">Featured Work</h2>
+    <p class="section-sub reveal">A snapshot of the intelligent systems we've designed and delivered.</p>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-tag">Home Automation</div>
+        <h3>Smart Villa — Full Automation Suite</h3>
+        <p>Designed and installed a complete smart home system for a 4-bedroom villa — lighting, HVAC, security cameras, and voice control integrated into a single dashboard.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">IoT · Industrial</div>
+        <h3>Factory Floor Monitoring System</h3>
+        <p>Deployed a network of 80+ sensors across a manufacturing plant with real-time alerting, predictive maintenance, and a live analytics dashboard.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Software · Web</div>
+        <h3>Energy Management Platform</h3>
+        <p>Built a SaaS platform for tracking and optimizing energy consumption across multiple sites — with custom reporting, anomaly detection, and billing integration.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Electrical · IoT</div>
+        <h3>Smart Streetlight Network</h3>
+        <p>Engineered an adaptive street lighting solution with motion sensing, remote control, and fault detection — reducing energy consumption by 40%.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Embedded · Hardware</div>
+        <h3>Custom PLC Controller</h3>
+        <p>Developed a proprietary programmable logic controller for an automation client, replacing legacy hardware and cutting response latency by 60%.</p>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-tag">Software · Mobile</div>
+        <h3>IoT Control App</h3>
+        <p>Delivered a cross-platform mobile app for real-time control and monitoring of IoT devices, with push notifications, scheduling, and role-based access control.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label reveal">Get In Touch</div>
+    <h2 class="section-title reveal">Let's Build Something Great</h2>
+    <div class="contact-box reveal">
+      <p>Have a project in mind? Whether it's a smart home, an industrial IoT system, or a custom software solution — we'd love to hear from you.</p>
+      <a class="contact-email" href="mailto:hello@lakshiv.com">hello@lakshiv.com</a>
+      <div class="social-links">
+        <a href="#" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">Twitter / X</a>
+        <a href="#" class="social-link">WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Lakshiv. India. All rights reserved.</p>
+    <p style="color:var(--cyan); font-family:'Syne',sans-serif; font-size:0.85rem;">Powering the Future.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
