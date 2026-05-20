@@ -1,927 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lakshiv — Powering the Future</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lakshiv — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #080c14;
-      --surface: #0e1420;
-      --border: rgba(0, 200, 255, 0.12);
-      --cyan: #00c8ff;
-      --green: #00ff88;
-      --white: #f0f4ff;
-      --muted: #8a9bb8;
-      --card-bg: rgba(14, 20, 32, 0.8);
+      --bg: #080c14; --surface: #0e1420; --border: rgba(0,200,255,0.12);
+      --cyan: #00c8ff; --green: #00ff88; --white: #f0f4ff;
+      --muted: #8a9bb8; --card-bg: rgba(14,20,32,0.9);
     }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .blob { position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
+    .blob-1 { width: 500px; height: 500px; background: var(--cyan); top: -150px; right: -150px; }
+    .blob-2 { width: 400px; height: 400px; background: var(--green); bottom: -100px; left: -150px; }
 
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: linear-gradient(rgba(0, 200, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 200, 255, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .blob {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .blob-1 {
-      width: 600px;
-      height: 600px;
-      background: var(--cyan);
-      top: -200px;
-      right: -200px;
-    }
-
-    .blob-2 {
-      width: 500px;
-      height: 500px;
-      background: var(--green);
-      bottom: 100px;
-      left: -200px;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(8, 12, 20, 0.7);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.6rem;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--cyan), var(--green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .logo span {
-      color: var(--white);
-      -webkit-text-fill-color: var(--white);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--cyan);
-    }
-
-    .nav-email-link {
-      color: var(--green) !important;
-      font-weight: 500 !important;
-    }
-
-    .nav-cta {
-      background: transparent;
-      border: 1px solid var(--cyan);
-      color: var(--cyan);
-      padding: 0.5rem 1.4rem;
-      border-radius: 4px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .nav-cta:hover {
-      background: var(--cyan);
-      color: var(--bg);
-    }
-
-    /* MODAL */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    .modal-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-      max-width: 480px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-    }
-
-    .modal-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .modal-box h2 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.8rem;
-      margin-bottom: 0.8rem;
-      color: var(--cyan);
-    }
-
-    .modal-box p {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.2rem;
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .modal-close:hover {
-      color: var(--white);
-    }
-
-    .modal-badge {
-      display: inline-block;
-      background: rgba(0, 200, 255, 0.1);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0.3rem 1rem;
-      font-size: 0.78rem;
-      color: var(--cyan);
-      margin-top: 1.2rem;
-      letter-spacing: 1px;
-    }
-
-    /* HERO */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 4rem 4rem;
-      z-index: 1;
-    }
-
-    .hero-inner {
-      max-width: 780px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0.35rem 1rem;
-      font-size: 0.8rem;
-      color: var(--cyan);
-      margin-bottom: 2rem;
-      background: rgba(0, 200, 255, 0.05);
+    .login-card {
+      position: relative; z-index: 1;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3rem 2.5rem; width: 100%; max-width: 420px;
+      box-shadow: 0 0 80px rgba(0,200,255,0.05);
       animation: fadeUp 0.6s ease both;
     }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: pulse 2s infinite;
-    }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--cyan), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin-bottom: 0.4rem; }
+    .logo span { color: var(--white); -webkit-text-fill-color: var(--white); }
+    .login-subtitle { text-align: center; font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; }
+    .divider { border: none; border-top: 1px solid var(--border); margin-bottom: 2rem; }
 
-    @keyframes pulse {
+    .field { margin-bottom: 1.5rem; }
+    label { display: block; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
 
-      0%,
-      100% {
-        opacity: 1;
-      }
+    .input-group { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; background: rgba(0,0,0,0.3); overflow: hidden; transition: border-color 0.2s; }
+    .input-group:focus-within { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,200,255,0.08); }
+    .input-group input { flex: 1; background: transparent; border: none; outline: none; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 1rem; padding: 0.85rem 1rem; }
+    .input-group input::placeholder { color: var(--muted); }
+    .input-suffix { padding: 0.85rem 1rem; font-size: 0.88rem; color: var(--muted); background: rgba(0,200,255,0.04); border-left: 1px solid var(--border); white-space: nowrap; user-select: none; }
 
-      50% {
-        opacity: 0.4;
-      }
-    }
 
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
 
-    h1 .accent {
-      color: var(--cyan);
-    }
+    .email-preview { font-size: 0.78rem; color: var(--cyan); margin-top: 0.4rem; min-height: 1rem; padding-left: 0.2rem; }
 
-    h1 .accent2 {
-      color: var(--green);
-    }
+    .btn-login { width: 100%; background: linear-gradient(135deg, var(--cyan), var(--green)); color: var(--bg); border: none; padding: 0.9rem; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: opacity 0.2s, transform 0.2s; margin-top: 0.5rem; }
+    .btn-login:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-login:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--muted);
-      max-width: 540px;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
-
-    .hero-btns {
-      display: flex;
-      gap: 1rem;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--cyan), var(--green));
-      color: var(--bg);
-      border: none;
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .btn-primary:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--white);
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--cyan);
-    }
-
-    .stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 4rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
-      animation: fadeUp 0.7s 0.4s ease both;
-    }
-
-    .stat-val {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--cyan);
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    /* SECTIONS */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 6rem 4rem;
-    }
-
-    .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
-    }
-
-    .section-sub {
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.7;
-    }
-
-    /* UNDER CONSTRUCTION */
-    .under-construction {
-      margin-top: 3.5rem;
-      border: 1px dashed rgba(0, 200, 255, 0.3);
-      border-radius: 16px;
-      padding: 4rem 2rem;
-      text-align: center;
-      background: rgba(0, 200, 255, 0.03);
-    }
-
-    .uc-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .uc-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--cyan);
-      margin-bottom: 0.8rem;
-    }
-
-    .uc-text {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-      max-width: 420px;
-      margin: 0 auto 1.5rem;
-    }
-
-    .uc-badge {
-      display: inline-block;
-      background: rgba(255, 200, 0, 0.1);
-      border: 1px solid rgba(255, 200, 0, 0.3);
-      border-radius: 100px;
-      padding: 0.35rem 1.2rem;
-      font-size: 0.78rem;
-      color: #ffc800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    /* SERVICES */
-    #services {
-      background: var(--surface);
-    }
-
-    /* WHY US */
-    #why .why-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 4rem;
-      align-items: center;
-      margin-top: 3rem;
-      max-width: 700px;
-    }
-
-    .why-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .why-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1.4rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--card-bg);
-      transition: border-color 0.2s;
-    }
-
-    .why-item:hover {
-      border-color: var(--cyan);
-    }
-
-    .why-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: var(--cyan);
-      opacity: 0.4;
-      min-width: 2rem;
-    }
-
-    .why-item h4 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-
-    .why-item p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* PROJECTS */
-    #projects {
-      background: var(--surface);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .project-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 2rem;
-      background: var(--card-bg);
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .project-card:hover {
-      border-color: var(--green);
-      transform: translateY(-3px);
-    }
-
-    .project-tag {
-      font-size: 0.72rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 0.8rem;
-    }
-
-    .project-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-card p {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* CAREERS */
-    #careers .careers-box {
-      margin-top: 3rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 3rem;
-      background: var(--card-bg);
-      text-align: center;
-    }
-
-    #careers .careers-box p {
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    /* CONTACT */
-    #contact {
-      text-align: center;
-    }
-
-    .contact-box {
-      max-width: 700px;
-      margin: 3rem auto 0;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 3rem;
-      background: var(--card-bg);
-    }
-
-    .contact-box>p {
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-
-    .contact-email {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.3rem;
-      color: var(--cyan);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 2rem;
-      transition: opacity 0.2s;
-    }
-
-    .contact-email:hover {
-      opacity: 0.7;
-    }
-
-    .map-container {
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      margin-bottom: 2rem;
-    }
-
-    .map-container iframe {
-      display: block;
-      width: 100%;
-      height: 300px;
-      border: none;
-      filter: grayscale(30%) invert(5%);
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 0.5rem 1.2rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .social-link:hover {
-      border-color: var(--cyan);
-      color: var(--cyan);
-    }
-
-    /* FOOTER */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 2rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    footer p {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      section,
-      #hero {
-        padding: 5rem 1.5rem 3rem;
-      }
-
-      .stats {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-      }
-    }
+    .login-footer { text-align: center; margin-top: 1.5rem; font-size: 0.76rem; color: var(--muted); line-height: 1.6; }
+    .back-link { display: block; text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .back-link:hover { color: var(--white); }
   </style>
 </head>
-
 <body>
-
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <!-- UNDER CONSTRUCTION MODAL -->
-  <div class="modal-overlay" id="ucModal">
-    <div class="modal-box">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-icon">🚧</div>
-      <h2 id="modalTitle">Page Under Construction</h2>
-      <p id="modalDesc">We're working hard to bring this page to life. Check back soon — something great is coming!</p>
-      <p id="modalNote" style="margin-top:1rem; font-size:0.78rem; color:var(--muted); font-style:italic; display:none;"></p>
+  <div class="login-card">
+    <div class="logo">Lakshiv<span>.</span></div>
+    <p class="login-subtitle">Sign in to your workspace</p>
+    <hr class="divider"/>
+
+    <!-- USERNAME -->
+    <div class="field">
+      <label for="username">Username</label>
+      <div class="input-group">
+        <input type="text" id="username" placeholder="e.g. john" autocomplete="off" autocapitalize="none" spellcheck="false" oninput="updatePreview()" onkeydown="if(event.key==='Enter') handleLogin()"/>
+        <div class="input-suffix">@lakshiv.co.in</div>
+      </div>
+      <div class="email-preview" id="emailPreview"></div>
     </div>
+
+
+
+    <button class="btn-login" id="loginBtn" onclick="handleLogin()" disabled>Sign In →</button>
+
+    <div class="login-footer">
+      You'll be redirected to Zoho Mail and signed in as<br/>
+      <span id="footerEmail" style="color:var(--cyan);">username@lakshiv.co.in</span>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to Lakshiv.co.in</a>
   </div>
 
-  <!-- NAV -->
-  <nav>
-    <div class="logo">Lakshiv<span>.</span></div>
-    <ul class="nav-links">
-      <li><a href="#"
-          onclick="openModal('Products','Our products page is under construction. We\'re curating our catalogue — stay tuned!'); return false;">Products</a>
-      </li>
-      <li><a href="#"
-          onclick="openModal('Services','Our detailed services page is being built. Meanwhile, scroll down to see what we offer!'); return false;">Services</a>
-      </li>
-      <li><a href="#" onclick="openModal('Why Us','We\'re preparing testimonials, case studies, and a deep-dive into what makes Lakshiv different. Watch this space!', 'Formerly known as Enersys Energy Solutions Pvt. Ltd'); return false;">Why Us</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#careers">Careers</a></li>
-      <li><a href="mailto:contact@lakshiv.co.in" class="nav-email-link">Email</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-inner">
-
-      <h1>
-        We Build<br />
-        <span class="accent">Smart Systems</span><br />
-        for the <span class="accent2">Future</span>
-      </h1>
-      <p class="hero-sub">
-        Lakshiv delivers end-to-end solutions in electrical engineering, IoT integration, home automation, and custom
-        software — turning complex ideas into seamless, intelligent realities.
-      </p>
-      <div class="hero-btns">
-        <button class="btn-primary"
-          onclick="openModal('Services','Our detailed services page is being built. Meanwhile, scroll down to see what we offer!')">Explore
-          Services</button>
-        <button class="btn-ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View
-          Projects</button>
-      </div>
-      <div class="stats">
-        <div>
-          <div class="stat-val">50+</div>
-          <div class="stat-label">Projects Delivered</div>
-        </div>
-        <div>
-          <div class="stat-val">100%</div>
-          <div class="stat-label">Client Satisfaction</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS (Under Construction) -->
-  <section id="products">
-    <div class="section-label reveal">What We Offer</div>
-    <h2 class="section-title reveal">Products</h2>
-    <p class="section-sub reveal">Innovative hardware and software products built in-house at Lakshiv.</p>
-    <div class="under-construction reveal">
-      <span class="uc-icon">🚧</span>
-      <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're busy building something exciting. Our full product catalogue will be unveiled very soon.
-        Stay tuned!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
-    </div>
-  </section>
-
-  <!-- SERVICES (Under Construction) -->
-  <section id="services" style="background: var(--surface);">
-    <div class="section-label reveal">What We Do</div>
-    <h2 class="section-title reveal">Services</h2>
-    <p class="section-sub reveal">From wiring to code — electrical, IoT, home automation, and software under one roof.
-    </p>
-    <div class="under-construction reveal">
-      <span class="uc-icon">⚙️</span>
-      <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're putting together detailed service pages with case studies, pricing, and process
-        walkthroughs. Back soon!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
-    </div>
-  </section>
-
-  <!-- WHY US (Under Construction) -->
-  <section id="why">
-    <div class="section-label reveal">Our Edge</div>
-    <h2 class="section-title reveal">Why Choose Lakshiv?</h2>
-    <p class="section-sub reveal">One team. Hardware expertise. Software depth. Zero handoff gaps.</p>
-    <div class="under-construction reveal">
-      <span class="uc-icon">🏆</span>
-      <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're preparing testimonials, case studies, and a deep-dive into what makes Lakshiv different.
-        Watch this space!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
-      <p style="margin-top:1.5rem; font-size:0.82rem; color:var(--muted); letter-spacing:0.5px;">Formerly known as <em>Enersys Energy Solutions Pvt. Ltd</em></p>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" style="background: var(--surface);">
-    <div class="section-label reveal">Portfolio</div>
-    <h2 class="section-title reveal">Featured Work</h2>
-    <p class="section-sub reveal">A snapshot of the intelligent systems we've designed and delivered.</p>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-tag">Home Automation</div>
-        <h3>Smart Villa — Full Automation Suite</h3>
-        <p>Designed and installed a complete smart home system for a 4-bedroom villa — lighting, HVAC, security cameras,
-          and voice control integrated into a single dashboard.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">IoT · Industrial</div>
-        <h3>Factory Floor Monitoring System</h3>
-        <p>Deployed a network of 80+ sensors across a manufacturing plant with real-time alerting, predictive
-          maintenance, and a live analytics dashboard.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Software · Web</div>
-        <h3>Energy Management Platform</h3>
-        <p>Built a SaaS platform for tracking and optimizing energy consumption across multiple sites — with custom
-          reporting, anomaly detection, and billing integration.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Electrical · IoT</div>
-        <h3>Smart Streetlight Network</h3>
-        <p>Engineered an adaptive street lighting solution with motion sensing, remote control, and fault detection —
-          reducing energy consumption by 40%.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Embedded · Hardware</div>
-        <h3>Custom PLC Controller</h3>
-        <p>Developed a proprietary programmable logic controller for an automation client, replacing legacy hardware and
-          cutting response latency by 60%.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Software · Mobile</div>
-        <h3>IoT Control App</h3>
-        <p>Delivered a cross-platform mobile app for real-time control and monitoring of IoT devices, with push
-          notifications, scheduling, and role-based access control.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAREERS -->
-  <section id="careers">
-    <div class="section-label reveal">Join Us</div>
-    <h2 class="section-title reveal">Careers</h2>
-    <div class="careers-box reveal">
-      <p>We're a growing team passionate about technology, innovation, and making a real-world impact. If you love
-        solving hard problems at the intersection of hardware and software — we'd love to hear from you.</p>
-      <p>Currently building our team. Send your profile to <a href="mailto:contact@lakshiv.co.in"
-          style="color:var(--cyan); text-decoration:none;">contact@lakshiv.co.in</a> with the subject <strong
-          style="color:var(--white);">"Join Lakshiv"</strong>.</p>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" style="background: var(--surface);">
-    <div class="section-label reveal">Get In Touch</div>
-    <h2 class="section-title reveal">Let's Build Something Great</h2>
-    <div class="contact-box reveal">
-      <p>Have a project in mind? Whether it's a smart home, an industrial IoT system, or a custom software solution —
-        we'd love to hear from you.</p>
-      <a class="contact-email" href="mailto:contact@lakshiv.co.in">contact@lakshiv.co.in</a>
-
-      <!-- Office Address -->
-      <div
-        style="text-align:left; margin-bottom:1.2rem; padding:1.2rem 1.5rem; border:1px solid var(--border); border-radius:8px; background:rgba(0,200,255,0.03);">
-        <div style="font-size:0.88rem; color:var(--muted); line-height:1.9;">
-          <strong style="color:var(--white); font-size:0.95rem;">Lakshiv Technologies &amp; Services Pvt.
-            Ltd</strong><br />
-          #304, 3rd Floor, SV Landmark Building<br />
-          Bollaram –> Miyapur Main Road, Above Paramitha Hospital<br />
-          Near Volvo Bus Stop, Hyderabad<br />
-          Telangana – 500090, India
-        </div>
-      </div>
-
-      <!-- Google Map -->
-      <div class="map-container">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.5458775230177!2d78.35308207591244!3d17.529178498703505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ddcb8044ab3%3A0xd490b22fe8e6e991!2sSV%20Landmark%20Apartment!5e0!3m2!1sen!2sin!4v1779254982602!5m2!1sen!2sin"
-          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-
-
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2025 Lakshiv. India. All rights reserved.</p>
-    <p style="color:var(--cyan); font-family:'Syne',sans-serif; font-size:0.85rem;">Powering the Future.</p>
-  </footer>
-
   <script>
-   function openModal(title, desc, note) {
-  document.getElementById('modalTitle').textContent = title + ' — Coming Soon';
-  document.getElementById('modalDesc').textContent = desc;
-  const noteEl = document.getElementById('modalNote');
-  if (note) { noteEl.textContent = note; noteEl.style.display = 'block'; }
-  else { noteEl.style.display = 'none'; }
-  document.getElementById('ucModal').classList.add('open');
-}
-    function closeModal() {
-      document.getElementById('ucModal').classList.remove('open');
+    function updatePreview() {
+      const input = document.getElementById('username').value.trim();
+      const username = input.replace(/@.*$/, '');
+      const preview = document.getElementById('emailPreview');
+      const btn = document.getElementById('loginBtn');
+      const footer = document.getElementById('footerEmail');
+
+      if (username.length > 0) {
+        const fullEmail = username + '@lakshiv.co.in';
+        preview.textContent = '→ ' + fullEmail;
+        footer.textContent = fullEmail;
+        btn.disabled = false;
+        btn.textContent = 'Sign In as ' + fullEmail + ' →';
+      } else {
+        preview.textContent = '';
+        footer.textContent = 'username@lakshiv.co.in';
+        btn.disabled = true;
+        btn.textContent = 'Sign In →';
+      }
     }
-    document.getElementById('ucModal').addEventListener('click', function (e) {
-      if (e.target === this) closeModal();
-    });
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function handleLogin() {
+      const input = document.getElementById('username').value.trim();
+      if (!input) return;
+
+      const username = input.replace(/@.*$/, '');
+      const fullEmail = username + '@lakshiv.co.in';
+
+      const zohoUrl = 'https://accounts.zoho.in/signin?servicename=ZohoMail&signupurl=https://www.zoho.com/mail/&username=' + encodeURIComponent(fullEmail);
+      window.location.href = zohoUrl;
+    }
   </script>
 </body>
-
 </html>
