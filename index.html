@@ -706,7 +706,7 @@
       <div class="modal-icon">🚧</div>
       <h2 id="modalTitle">Page Under Construction</h2>
       <p id="modalDesc">We're working hard to bring this page to life. Check back soon — something great is coming!</p>
-      <div class="modal-badge">Coming Soon</div>
+      <p id="modalNote" style="margin-top:1rem; font-size:0.78rem; color:var(--muted); font-style:italic; display:none;"></p>
     </div>
   </div>
 
@@ -720,9 +720,7 @@
       <li><a href="#"
           onclick="openModal('Services','Our detailed services page is being built. Meanwhile, scroll down to see what we offer!'); return false;">Services</a>
       </li>
-      <li><a href="#"
-          onclick="openModal('Why Us','Our Why Us page is coming soon with case studies, testimonials, and more!'); return false;">Why
-          Us</a></li>
+      <li><a href="#" onclick="openModal('Why Us','We\'re preparing testimonials, case studies, and a deep-dive into what makes Lakshiv different. Watch this space!', 'Formerly known as Enersys Energy Solutions Pvt. Ltd'); return false;">Why Us</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#careers">Careers</a></li>
       <li><a href="mailto:contact@lakshiv.co.in" class="nav-email-link">Email</a></li>
@@ -905,11 +903,14 @@
   </footer>
 
   <script>
-    function openModal(title, desc) {
-      document.getElementById('modalTitle').textContent = title + ' — Coming Soon';
-      document.getElementById('modalDesc').textContent = desc;
-      document.getElementById('ucModal').classList.add('open');
-    }
+   function openModal(title, desc, note) {
+  document.getElementById('modalTitle').textContent = title + ' — Coming Soon';
+  document.getElementById('modalDesc').textContent = desc;
+  const noteEl = document.getElementById('modalNote');
+  if (note) { noteEl.textContent = note; noteEl.style.display = 'block'; }
+  else { noteEl.style.display = 'none'; }
+  document.getElementById('ucModal').classList.add('open');
+}
     function closeModal() {
       document.getElementById('ucModal').classList.remove('open');
     }
