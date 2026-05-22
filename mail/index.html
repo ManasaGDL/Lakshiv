@@ -338,8 +338,13 @@
 
     setTimeout(() => {
       // TODO: Replace with Zoho OAuth URL after setup
-      // const zohoUrl = `https://accounts.zoho.in/oauth2/auth?scope=ZohoMail.messages.ALL&client_id=YOUR_CLIENT_ID&response_type=code&redirect_uri=YOUR_REDIRECT_URI&login_hint=${encodeURIComponent(fullEmail)}`;
-      window.location.href = `https://mail.zoho.in/zm/#mail`;
+      const zohoUrl = `https://accounts.zoho.in/oauth2/auth?scope=ZohoMail.messages.ALL
+&client_id=1000.5UB7TN9O73AXQ33M4H2BYO3HINEKRE          
+&response_type=code
+&redirect_uri=https://mail.lakshiv.co.in/callback   
+&login_hint=${encodeURIComponent(fullEmail)}`;
+
+window.location.href = zohoUrl;
     }, 1200);
   }
 
