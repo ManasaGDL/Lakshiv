@@ -339,13 +339,16 @@
 
     setTimeout(() => {
       // TODO: Replace with Zoho OAuth URL after setup
-      const zohoUrl = `https://accounts.zoho.in/oauth2/auth?scope=ZohoMail.messages.ALL
-&client_id=1000.5UB7TN9O73AXQ33M4H2BYO3HINEKRE          
+      const zohoUrl = `https://accounts.zoho.in/oauth2/auth
+?scope=ZohoMail.messages.ALL
+&client_id=1000.5UB7TN9O73AXQ33M4H2BYO3HINEKRE
 &response_type=code
-&redirect_uri=https://mail.lakshiv.co.in/callback   
+&redirect_uri=https://login.lakshiv.co.in/callback
 &login_hint=${encodeURIComponent(fullEmail)}`;
 
-window.location.href = zohoUrl;
+window.location.href = zohoUrl;  ← make sure this line is updated too!
+
+
     }, 1200);
   }
 
