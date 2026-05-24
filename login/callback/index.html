@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lakshiv. — Redirecting...</title>
+</head>
+<body>
+<script>
+  // Get the authorization code from URL
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  
+  if (code) {
+    // Redirect to Zoho Mail
+    window.location.href = 'https://mail.zoho.in/zm/#mail';
+  } else {
+    // If no code, go back to login
+    window.location.href = '/login/';
+  }
+</script>
+</body>
+</html>
