@@ -336,11 +336,19 @@
 
     btn.innerHTML = '<div class="spinner"></div> SIGNING IN...';
     btn.disabled = true;
-setTimeout(() => {
-  const zohoUrl = "https://accounts.zoho.in/oauth2/auth?scope=ZohoMail.messages.ALL&client_id=1000.5UB7TN9O73AXQ33M4H2BYO3HINEKRE&response_type=code&redirect_uri=https://login.lakshiv.co.in/login/callback&login_hint="+encodeURIComponent(fullEmail);
-  window.location.href = zohoUrl;
-}, 1200);
    
+    setTimeout(() => {
+      var zohoUrl = "https://accounts.zoho.in/oauth2/auth";
+          zohoUrl += "?scope=ZohoMail.messages.ALL";
+          zohoUrl += "&client_id=1000.1000.5UB7TN9O73AXQ33M4H2BYO3HINEKRE";
+          zohoUrl += "&response_type=code";
+          zohoUrl += "&redirect_uri=https://login.lakshiv.co.in/login/callback";
+          zohoUrl += "&login_hint=" + encodeURIComponent(fullEmail);
+      window.location.href = zohoUrl;
+    }, 1200);
+  }
+ 
+
 
 
     
