@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Lakshiv — Powering the Future</title>
+  <title>Lakshiv Technologies & Services — Engineering Smarter Systems</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -42,16 +42,11 @@
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 400; letter-spacing: 0.5px; transition: color 0.2s; }
     .nav-links a:hover { color: var(--cyan); }
     .nav-email-link { color: var(--green) !important; font-weight: 500 !important; }
-    .nav-cta { background: transparent; border: 1px solid var(--cyan); color: var(--cyan); padding: 0.5rem 1.4rem; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; text-decoration: none; }
-    .nav-cta:hover { background: var(--cyan); color: var(--bg); }
 
     /* MODAL */
     .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.open { display: flex; }
-    .modal-box {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-      padding: 3rem; max-width: 480px; width: 90%; text-align: center; position: relative;
-    }
+    .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 3rem; max-width: 480px; width: 90%; text-align: center; position: relative; }
     .modal-icon { font-size: 3.5rem; margin-bottom: 1rem; }
     .modal-box h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--cyan); }
     .modal-box p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; }
@@ -61,20 +56,20 @@
 
     /* HERO */
     #hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 8rem 4rem 4rem; z-index: 1; }
-    .hero-inner { max-width: 780px; }
+    .hero-inner { max-width: 820px; }
     .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.8rem; color: var(--cyan); margin-bottom: 2rem; background: rgba(0,200,255,0.05); animation: fadeUp 0.6s ease both; }
     .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
     h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; letter-spacing: -2px; margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.1s ease both; }
     h1 .accent { color: var(--cyan); }
     h1 .accent2 { color: var(--green); }
-    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 540px; line-height: 1.7; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.2s ease both; }
-    .hero-btns { display: flex; gap: 1rem; animation: fadeUp 0.7s 0.3s ease both; }
+    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 620px; line-height: 1.85; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.2s ease both; }
+    .hero-btns { display: flex; gap: 1rem; animation: fadeUp 0.7s 0.3s ease both; flex-wrap: wrap; }
     .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--green)); color: var(--bg); border: none; padding: 0.85rem 2rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
     .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
     .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--white); padding: 0.85rem 2rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; cursor: pointer; transition: border-color 0.2s; }
     .btn-ghost:hover { border-color: var(--cyan); }
-    .stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); animation: fadeUp 0.7s 0.4s ease both; }
+    .stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); animation: fadeUp 0.7s 0.4s ease both; flex-wrap: wrap; }
     .stat-val { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--cyan); }
     .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
 
@@ -82,42 +77,50 @@
     section { position: relative; z-index: 1; padding: 6rem 4rem; }
     .section-label { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem; }
     .section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -1px; margin-bottom: 1rem; }
-    .section-sub { color: var(--muted); max-width: 520px; line-height: 1.7; }
+    .section-sub { color: var(--muted); max-width: 680px; line-height: 1.85; margin-bottom: 3rem; }
 
     /* UNDER CONSTRUCTION */
-    .under-construction {
-      margin-top: 3.5rem; border: 1px dashed rgba(0,200,255,0.3); border-radius: 16px;
-      padding: 4rem 2rem; text-align: center; background: rgba(0,200,255,0.03);
-    }
+    .under-construction { margin-top: 3.5rem; border: 1px dashed rgba(0,200,255,0.3); border-radius: 16px; padding: 4rem 2rem; text-align: center; background: rgba(0,200,255,0.03); }
     .uc-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
     .uc-title { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.8rem; }
     .uc-text { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0 auto 1.5rem; }
     .uc-badge { display: inline-block; background: rgba(255,200,0,0.1); border: 1px solid rgba(255,200,0,0.3); border-radius: 100px; padding: 0.35rem 1.2rem; font-size: 0.78rem; color: #ffc800; letter-spacing: 1px; text-transform: uppercase; }
 
-    /* SERVICES */
-    #services { background: var(--surface); }
+    /* CARDS GRID */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .card { border: 1px solid var(--border); border-radius: 12px; padding: 2rem; background: var(--card-bg); transition: border-color 0.3s, transform 0.3s; }
+    .card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+    .card-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+    .card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.7rem; color: var(--white); }
+    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
 
-    /* WHY US */
-    #why .why-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: center; margin-top: 3rem; max-width: 700px; }
-    .why-list { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
-    .why-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1.4rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); transition: border-color 0.2s; }
-    .why-item:hover { border-color: var(--cyan); }
-    .why-num { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--cyan); opacity: 0.4; min-width: 2rem; }
-    .why-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 0.3rem; }
-    .why-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    /* SPLIT GRID */
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .point-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .point-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); transition: border-color 0.2s; }
+    .point-item:hover { border-color: var(--green); }
+    .point-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-top: 5px; flex-shrink: 0; box-shadow: 0 0 8px var(--green); }
+    .point-item span { font-size: 0.9rem; color: var(--white); line-height: 1.6; }
+    .highlight-box { border: 1px solid var(--border); border-radius: 12px; padding: 2.2rem; background: var(--card-bg); }
+    .highlight-box h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--green); margin-bottom: 1rem; }
+    .highlight-box p { font-size: 0.9rem; color: var(--muted); line-height: 1.85; }
 
-    /* PROJECTS */
-    #projects { background: var(--surface); }
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
-    .project-card { border: 1px solid var(--border); border-radius: 10px; padding: 2rem; background: var(--card-bg); transition: border-color 0.2s, transform 0.2s; }
-    .project-card:hover { border-color: var(--green); transform: translateY(-3px); }
-    .project-tag { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 0.8rem; }
-    .project-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem; }
-    .project-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+    /* APPROACH STEPS */
+    .approach-steps { display: flex; flex-direction: column; max-width: 750px; margin-bottom: 4rem; }
+    .step { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--cyan); opacity: 0.25; min-width: 3rem; line-height: 1; }
+    .step h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--white); }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* MISSION */
+    .mission-box { border: 1px solid rgba(0,255,136,0.2); border-radius: 16px; padding: 3.5rem; background: rgba(0,255,136,0.03); text-align: center; max-width: 800px; margin: 0 auto; }
+    .mission-box p { font-size: 1.1rem; color: var(--white); line-height: 1.95; }
+    .mission-box em { color: var(--green); font-style: normal; font-weight: 500; }
 
     /* CAREERS */
-    #careers .careers-box { margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; padding: 3rem; background: var(--card-bg); text-align: center; }
-    #careers .careers-box p { color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+    #careers .careers-box { margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; padding: 3rem; background: var(--card-bg); text-align: center; max-width: 650px; margin-left: auto; margin-right: auto; }
+    #careers .careers-box p { color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
 
     /* CONTACT */
     #contact { text-align: center; }
@@ -126,13 +129,10 @@
     .contact-email { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--cyan); text-decoration: none; display: block; margin-bottom: 2rem; transition: opacity 0.2s; }
     .contact-email:hover { opacity: 0.7; }
     .map-container { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 2rem; }
-    .map-container iframe { display: block; width: 100%; height: 300px; border: none; filter: grayscale(30%) invert(5%); }
-    .social-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .social-link { border: 1px solid var(--border); border-radius: 6px; padding: 0.5rem 1.2rem; font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
-    .social-link:hover { border-color: var(--cyan); color: var(--cyan); }
+    .map-container iframe { display: block; width: 100%; height: 300px; border: none; }
 
     /* FOOTER */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
     footer p { font-size: 0.82rem; color: var(--muted); }
 
     /* ANIMATIONS */
@@ -145,7 +145,8 @@
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       section, #hero { padding: 5rem 1.5rem 3rem; }
-      .stats { gap: 1.5rem; flex-wrap: wrap; }
+      .stats { gap: 1.5rem; }
+      .split-grid { grid-template-columns: 1fr; gap: 2rem; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
@@ -155,7 +156,7 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <!-- UNDER CONSTRUCTION MODAL -->
+  <!-- MODAL -->
   <div class="modal-overlay" id="ucModal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeModal()">✕</button>
@@ -173,50 +174,188 @@
     <ul class="nav-links">
       <li><a href="#" onclick="openModal('Products','Our products page is under construction. We\'re curating our catalogue — stay tuned!'); return false;">Products</a></li>
       <li><a href="#" onclick="openModal('Services','Our detailed services page is being built. Meanwhile, scroll down to see what we offer!'); return false;">Services</a></li>
-      <li><a href="#" onclick="openModal('Why Us','Our Why Us page is coming soon with case studies, testimonials, and more!', 'Formerly known as Enersys Energy Solutions Pvt. Ltd'); return false;">Why Us</a></li>
+      <li><a href="#why">Why Lakshiv</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#careers">Careers</a></li>
-      <li><a href="https://login.lakshiv.co.in/login/" target="_blank">Email</a></li>
+      <li><a href="https://login.lakshiv.co.in/login/" target="_blank" class="nav-email-link">Email</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
     <div class="hero-inner">
-
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Lakshiv Technologies &amp; Services
+      </div>
       <h1>
-        We Build<br/>
-        <span class="accent">Smart Systems</span><br/>
-        for the <span class="accent2">Future</span>
+        Engineering <span class="accent">Smarter</span> Systems<br/>
+        for a <span class="accent2">Connected</span> Future
       </h1>
       <p class="hero-sub">
-        Lakshiv delivers end-to-end solutions in electrical engineering, IoT integration, home automation, and custom software — turning complex ideas into seamless, intelligent realities.
+        We design and build intelligent systems that empower organizations, industries, and individuals to make informed decisions, improve operational efficiency, and embrace automation with confidence.
       </p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="openModal('Services','Our detailed services page is being built. Meanwhile, scroll down to see what we offer!')">Explore Services</button>
-        <button class="btn-ghost" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+        <button class="btn-primary" onclick="document.getElementById('principles').scrollIntoView({behavior:'smooth'})">Discover What We Do</button>
+        <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
       </div>
       <div class="stats">
         <div><div class="stat-val">50+</div><div class="stat-label">Projects Delivered</div></div>
+        <div><div class="stat-val">10,000+</div><div class="stat-label">Sq. Ft. Automated</div></div>
         <div><div class="stat-val">100%</div><div class="stat-label">Client Satisfaction</div></div>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCTS (Under Construction) -->
+  <!-- SECTION 1: THREE CORE PRINCIPLES -->
+  <section id="principles" style="background: var(--surface);">
+    <div class="section-label reveal">Our Foundation</div>
+    <h2 class="section-title reveal">Our Solutions Are Built Around<br/>Three Fundamental Principles</h2>
+    <p class="section-sub reveal">Every system we design, every project we deliver — is shaped by these three principles at its core.</p>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <span class="card-icon">📡</span>
+        <h3>Smart Systems for Real-Time Monitoring</h3>
+        <p>We create advanced monitoring systems that capture and present live operational data from electrical, industrial, commercial, and connected environments. By transforming raw data into meaningful insights, our solutions provide complete visibility into critical processes and assets.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">📊</span>
+        <h3>Smart Systems for Data Analysis</h3>
+        <p>Data becomes valuable only when it drives better decisions. Our intelligent analytics platforms help identify trends, optimize performance, predict issues, and uncover opportunities for improvement — enabling businesses to move from reactive operations to proactive management.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🤖</span>
+        <h3>Smart &amp; Self-Reliant Automation Systems</h3>
+        <p>We develop autonomous and intelligent automation solutions that streamline routine operations, reduce manual intervention, and ensure consistent performance. These systems are designed to operate reliably while adapting to changing operational requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: TECHNOLOGY THAT COMPLEMENTS HUMAN EXPERTISE -->
+  <section id="expertise">
+    <div class="section-label reveal">Our Philosophy</div>
+    <h2 class="section-title reveal">Technology That Complements<br/>Human Expertise</h2>
+    <p class="section-sub reveal">We believe technology should enhance human capabilities rather than replace them.</p>
+    <div class="split-grid">
+      <ul class="point-list">
+        <li class="point-item reveal"><div class="point-dot"></div><span>Minimize human errors and reduce operational negligence</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Free valuable human resources from repetitive tasks</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Allow people to focus on experience, judgment, creativity, and decision-making</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Combine intelligent automation with human expertise</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Achieve higher productivity and greater reliability</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Deliver improved operational excellence</span></li>
+      </ul>
+      <div class="highlight-box reveal">
+        <h3>Setting New Standards in Engineering Excellence</h3>
+        <p>Innovation is not limited to our products — it is reflected in every project we execute. We continuously challenge conventional approaches and redefine industry standards through:<br/><br/>
+        Intelligent IoT and IIoT solutions · Embedded product development · Smart electrical infrastructure · Energy monitoring and management systems · Industrial automation platforms · Smart home and building technologies · Custom software, dashboards, and mobile applications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: PROVEN EXPERTISE -->
+  <section id="capabilities" style="background: var(--surface);">
+    <div class="section-label reveal">What We Deliver</div>
+    <h2 class="section-title reveal">Proven Expertise in Electrical &amp;<br/>Smart Infrastructure Projects</h2>
+    <p class="section-sub reveal">Our team has successfully executed complex electrical and automation projects across commercial, industrial, and residential sectors. From large commercial establishments to premium smart homes, we have delivered end-to-end electrical and intelligent automation solutions for projects exceeding 10,000 square feet of carpet area.</p>
+    <div class="cards-grid">
+      <div class="card reveal">
+        <span class="card-icon">🔌</span>
+        <h3>Electrical Design &amp; Execution</h3>
+        <p>End-to-end electrical design and execution for commercial, industrial, and residential environments — built to the highest standards of safety and performance.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🏠</span>
+        <h3>Smart Home Automation</h3>
+        <p>Complete intelligent home automation systems covering lighting, climate, security, and unified control — designed for premium living experiences.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🏭</span>
+        <h3>Industrial Monitoring Systems</h3>
+        <p>Real-time industrial monitoring platforms that provide full visibility into manufacturing and operational environments with live data and predictive alerts.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🔋</span>
+        <h3>Energy Management Solutions</h3>
+        <p>Intelligent energy monitoring and management systems that help organizations track consumption, reduce costs, and operate more sustainably.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🏢</span>
+        <h3>Building Management Systems</h3>
+        <p>Integrated BMS solutions that centralize control of building infrastructure — HVAC, lighting, access, and energy — for peak operational efficiency.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">☀️</span>
+        <h3>Renewable Energy Integration</h3>
+        <p>Seamless integration of renewable energy sources with existing electrical infrastructure, supported by intelligent monitoring and load management.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">🌐</span>
+        <h3>IoT &amp; IIoT Deployments</h3>
+        <p>Custom Internet of Things and Industrial IoT solutions that connect assets, systems, and people — delivering real-time data and intelligent control.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-icon">⚙️</span>
+        <h3>Custom Control &amp; Automation Solutions</h3>
+        <p>Bespoke control and automation systems designed precisely around client requirements — from embedded hardware to cloud-connected platforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: WHY LAKSHIV — BUILT AROUND YOUR REQUIREMENTS -->
+  <section id="why">
+    <div class="section-label reveal">Why Lakshiv</div>
+    <h2 class="section-title reveal">Built Around Your Requirements,<br/>Not Around Existing Products</h2>
+    <p class="section-sub reveal">Every organization has unique challenges, processes, and objectives. Rather than forcing clients to adapt their operations to pre-built products, we begin by understanding their requirements, workflows, and real-world use cases — then design and develop solutions specifically tailored to meet those needs. Our approach is consultative, collaborative, and engineering-driven.</p>
+    <div class="approach-steps">
+      <div class="step reveal"><div class="step-num">01</div><div><h4>Understand the Client's Operational Challenges</h4><p>We invest time to deeply understand your environment, pain points, and goals before suggesting any solution.</p></div></div>
+      <div class="step reveal"><div class="step-num">02</div><div><h4>Analyze Existing Processes &amp; Requirements</h4><p>A thorough analysis of your workflows, systems, and real-world use cases forms the foundation of everything we design.</p></div></div>
+      <div class="step reveal"><div class="step-num">03</div><div><h4>Design a Customized Solution Architecture</h4><p>We design a solution architecture tailored precisely to your requirements — no off-the-shelf compromises.</p></div></div>
+      <div class="step reveal"><div class="step-num">04</div><div><h4>Develop &amp; Integrate the Required Technologies</h4><p>Our engineers develop and integrate the required hardware, firmware, and software with precision and quality.</p></div></div>
+      <div class="step reveal"><div class="step-num">05</div><div><h4>Deploy, Optimize &amp; Support the Solution</h4><p>We handle deployment, fine-tuning, and ongoing support — ensuring every system performs at its best long after go-live.</p></div></div>
+    </div>
+    <div class="split-grid">
+      <ul class="point-list">
+        <li class="point-item reveal"><div class="point-dot"></div><span>Minimize human errors and reduce operational negligence</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Free valuable human resources from repetitive tasks</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Allow people to focus on experience, judgment, creativity, and decision-making</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Combine intelligent automation with human expertise</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Achieve higher productivity and greater reliability</span></li>
+        <li class="point-item reveal"><div class="point-dot"></div><span>Deliver improved operational excellence</span></li>
+      </ul>
+      <div class="highlight-box reveal">
+        <h3>Technology That Complements Human Expertise</h3>
+        <p>We believe technology should enhance human capabilities rather than replace them. Our smart systems minimize human errors, reduce operational negligence, and free valuable human resources from repetitive tasks — allowing people to focus on activities where experience, judgment, creativity, and decision-making truly matter.<br/><br/>
+        By combining intelligent automation with human expertise, we help organizations achieve higher productivity, greater reliability, and improved operational excellence.</p>
+        <p style="margin-top:1.5rem; font-size:0.78rem; color:var(--muted); font-style:italic;">Formerly known as Enersys Energy Solutions Pvt. Ltd</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: OUR MISSION -->
+  <section id="mission" style="background: var(--surface);">
+    <div class="section-label reveal">Our Mission</div>
+    <h2 class="section-title reveal">Why We Exist</h2>
+    <div class="mission-box reveal">
+      <p>To design <em>intelligent, reliable, and scalable solutions</em> that connect the physical and digital worlds, enabling businesses and individuals to operate smarter, safer, and more efficiently.<br/><br/>
+      From <em>Embedded Systems and IIoT Platforms</em> to <em>Smart Electrical Infrastructure and Automation Solutions</em> — we transform ideas into intelligent systems that create measurable impact.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCTS — COMING SOON -->
   <section id="products">
     <div class="section-label reveal">What We Offer</div>
     <h2 class="section-title reveal">Products</h2>
-    <p class="section-sub reveal">Innovative hardware and software products built in-house at Lakshiv.</p>
+    <p class="section-sub reveal">Innovative hardware and software products engineered in-house at Lakshiv.</p>
     <div class="under-construction reveal">
       <span class="uc-icon">🚧</span>
       <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're busy building something exciting. Our full product catalogue will be unveiled very soon. Stay tuned!</p>
+      <p class="uc-text">We're building our product catalogue. Check back soon for something exciting!</p>
       <span class="uc-badge">⏳ Coming Soon</span>
     </div>
   </section>
 
-  <!-- SERVICES (Under Construction) -->
+  <!-- SERVICES — COMING SOON -->
   <section id="services" style="background: var(--surface);">
     <div class="section-label reveal">What We Do</div>
     <h2 class="section-title reveal">Services</h2>
@@ -229,101 +368,55 @@
     </div>
   </section>
 
-  <!-- WHY US (Under Construction) -->
-  <section id="why">
-    <div class="section-label reveal">Our Edge</div>
-    <h2 class="section-title reveal">Why Choose Lakshiv?</h2>
-    <p class="section-sub reveal">One team. Hardware expertise. Software depth. Zero handoff gaps.</p>
-    <div class="under-construction reveal">
-      <span class="uc-icon">🏆</span>
-      <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're preparing testimonials, case studies, and a deep-dive into what makes Lakshiv different. Watch this space!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
-      <p style="margin-top:1.5rem; font-size:0.82rem; color:var(--muted); letter-spacing:0.5px;">Formerly known as <em>Enersys Energy Solutions Pvt. Ltd</em></p>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" style="background: var(--surface);">
+  <!-- PROJECTS — COMING SOON -->
+  <section id="projects">
     <div class="section-label reveal">Portfolio</div>
-    <h2 class="section-title reveal">Featured Work</h2>
-    <p class="section-sub reveal">A snapshot of the intelligent systems we've designed and delivered.</p>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-tag">Home Automation</div>
-        <h3>Smart Villa — Full Automation Suite</h3>
-        <p>Designed and installed a complete smart home system for a 4-bedroom villa — lighting, HVAC, security cameras, and voice control integrated into a single dashboard.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">IoT · Industrial</div>
-        <h3>Factory Floor Monitoring System</h3>
-        <p>Deployed a network of 80+ sensors across a manufacturing plant with real-time alerting, predictive maintenance, and a live analytics dashboard.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Software · Web</div>
-        <h3>Energy Management Platform</h3>
-        <p>Built a SaaS platform for tracking and optimizing energy consumption across multiple sites — with custom reporting, anomaly detection, and billing integration.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Electrical · IoT</div>
-        <h3>Smart Streetlight Network</h3>
-        <p>Engineered an adaptive street lighting solution with motion sensing, remote control, and fault detection — reducing energy consumption by 40%.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Embedded · Hardware</div>
-        <h3>Custom PLC Controller</h3>
-        <p>Developed a proprietary programmable logic controller for an automation client, replacing legacy hardware and cutting response latency by 60%.</p>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-tag">Software · Mobile</div>
-        <h3>IoT Control App</h3>
-        <p>Delivered a cross-platform mobile app for real-time control and monitoring of IoT devices, with push notifications, scheduling, and role-based access control.</p>
-      </div>
+    <h2 class="section-title reveal">Our Projects</h2>
+    <p class="section-sub reveal">A showcase of the intelligent systems we have designed and delivered across commercial, industrial, and residential sectors.</p>
+    <div class="under-construction reveal">
+      <span class="uc-icon">🚀</span>
+      <div class="uc-title">Coming Soon</div>
+      <p class="uc-text">We're documenting our completed projects and will be showcasing them here very soon. Stay tuned!</p>
+      <span class="uc-badge">⏳ Coming Soon</span>
     </div>
   </section>
 
   <!-- CAREERS -->
-  <section id="careers">
+  <section id="careers" style="background: var(--surface);">
     <div class="section-label reveal">Join Us</div>
     <h2 class="section-title reveal">Careers</h2>
     <div class="careers-box reveal">
       <p>We're a growing team passionate about technology, innovation, and making a real-world impact. If you love solving hard problems at the intersection of hardware and software — we'd love to hear from you.</p>
-      <p>Currently building our team. Send your profile to <a href="mailto:info@lakshiv.co.in" style="color:var(--cyan); text-decoration:none;">info@lakshiv.co.in</a> with the subject <strong style="color:var(--white);">"Join Lakshiv"</strong>.</p>
+      <p>Send your profile to <a href="mailto:info@lakshiv.co.in" style="color:var(--cyan); text-decoration:none;">info@lakshiv.co.in</a> with the subject <strong style="color:var(--white);">"Join Lakshiv"</strong>.</p>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" style="background: var(--surface);">
+  <section id="contact">
     <div class="section-label reveal">Get In Touch</div>
-    <h2 class="section-title reveal">Let's Build Something Great</h2>
+    <h2 class="section-title reveal">Let's Build Something Together</h2>
     <div class="contact-box reveal">
-      <p>Have a project in mind? Whether it's a smart home, an industrial IoT system, or a custom software solution — we'd love to hear from you.</p>
+      <p>Have a project in mind? Whether it's smart infrastructure, an IoT system, or a custom automation solution — we'd love to hear from you.</p>
       <a class="contact-email" href="mailto:info@lakshiv.co.in">info@lakshiv.co.in</a>
-
-      <!-- Office Address -->
       <div style="text-align:left; margin-bottom:1.2rem; padding:1.2rem 1.5rem; border:1px solid var(--border); border-radius:8px; background:rgba(0,200,255,0.03);">
         <div style="font-size:0.88rem; color:var(--muted); line-height:1.9;">
           <strong style="color:var(--white); font-size:0.95rem;">Lakshiv Technologies &amp; Services Pvt. Ltd</strong><br/>
           #304, 3rd Floor, SV Landmark Building<br/>
-          Bollaram –> Miyapur Main Road, Above Paramitha Hospital<br/>
+          Bollaram –&gt; Miyapur Main Road, Above Paramitha Hospital<br/>
           Near Volvo Bus Stop, Hyderabad<br/>
           Telangana – 500090, India
         </div>
       </div>
-
-      <!-- Google Map -->
       <div class="map-container">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.5458775230177!2d78.35308207591244!3d17.529178498703505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ddcb8044ab3%3A0xd490b22fe8e6e991!2sSV%20Landmark%20Apartment!5e0!3m2!1sen!2sin!4v1779254982602!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-
-
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 Lakshiv. India. All rights reserved.</p>
-    <p style="color:var(--cyan); font-family:'Syne',sans-serif; font-size:0.85rem;">Powering the Future.</p>
+    <p>© 2025 Lakshiv Technologies &amp; Services Pvt. Ltd. India. All rights reserved.</p>
+    <p style="color:var(--cyan); font-family:'Syne',sans-serif; font-size:0.85rem;">Engineering Smarter Systems for a Connected Future.</p>
   </footer>
 
   <script>
