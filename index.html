@@ -4,165 +4,325 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lakshiv Technologies & Services — Engineering Smarter Systems</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #080c14;
-      --surface: #0e1420;
-      --border: rgba(0,200,255,0.12);
-      --cyan: #00c8ff;
-      --green: #00ff88;
-      --white: #f0f4ff;
-      --muted: #8a9bb8;
-      --card-bg: rgba(14,20,32,0.8);
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.12);
+      --green: #00e676;
+      --green-dim: rgba(0,230,118,0.12);
+      --white: #ffffff;
+      --off-white: #e8e8e8;
+      --muted: #888888;
+      --text: #f0f0f0;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
-    body::before {
-      content: ''; position: fixed; inset: 0;
-      background-image: linear-gradient(rgba(0,200,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px; pointer-events: none; z-index: 0;
-    }
-    .blob { position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; z-index: 0; }
-    .blob-1 { width: 600px; height: 600px; background: var(--cyan); top: -200px; right: -200px; }
-    .blob-2 { width: 500px; height: 500px; background: var(--green); bottom: 100px; left: -200px; }
+    body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; font-weight: 300; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 3rem;
-      background: rgba(8,12,20,0.7); backdrop-filter: blur(20px);
+      padding: 1.2rem 4rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--cyan), var(--green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .logo span { color: var(--white); -webkit-text-fill-color: var(--white); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; font-weight: 400; letter-spacing: 0.5px; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-email-link { color: var(--green) !important; font-weight: 500 !important; }
+    .logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.6rem;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--white);
+    }
+    .logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-email-link {
+      background: var(--green) !important;
+      color: var(--bg) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 2px;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 1.5px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-email-link:hover { opacity: 0.85 !important; }
 
-    /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; }
+    /* ── MODAL ── */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 200; align-items: center; justify-content: center; }
     .modal-overlay.open { display: flex; }
-    .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 3rem; max-width: 480px; width: 90%; text-align: center; position: relative; }
-    .modal-icon { font-size: 3.5rem; margin-bottom: 1rem; }
-    .modal-box h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--cyan); }
-    .modal-box p { color: var(--muted); line-height: 1.7; font-size: 0.95rem; }
-    .modal-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
+    .modal-box { background: var(--surface); border: 1px solid var(--border2); border-radius: 4px; padding: 3rem; max-width: 460px; width: 90%; text-align: center; position: relative; }
+    .modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .modal-box h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--white); }
+    .modal-box p { color: var(--muted); line-height: 1.75; font-size: 0.9rem; }
+    .modal-close { position: absolute; top: 1rem; right: 1.2rem; background: none; border: none; color: var(--muted); font-size: 1.2rem; cursor: pointer; transition: color 0.2s; }
     .modal-close:hover { color: var(--white); }
-    .modal-badge { display: inline-block; background: rgba(0,200,255,0.1); border: 1px solid var(--border); border-radius: 100px; padding: 0.3rem 1rem; font-size: 0.78rem; color: var(--cyan); margin-top: 1.2rem; letter-spacing: 1px; }
+    .modal-badge { display: inline-block; background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,230,118,0.3); border-radius: 2px; padding: 0.3rem 1rem; font-size: 0.72rem; margin-top: 1.2rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
 
-    /* HERO */
-    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 8rem 4rem 4rem; z-index: 1; }
-    .hero-inner { max-width: 820px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.8rem; color: var(--cyan); margin-bottom: 2rem; background: rgba(0,200,255,0.05); animation: fadeUp 0.6s ease both; }
-    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 1.05; letter-spacing: -2px; margin-bottom: 1.5rem; animation: fadeUp 0.7s 0.1s ease both; }
-    h1 .accent { color: var(--cyan); }
-    h1 .accent2 { color: var(--green); }
-    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 620px; line-height: 1.85; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.2s ease both; }
-    .hero-btns { display: flex; gap: 1rem; animation: fadeUp 0.7s 0.3s ease both; flex-wrap: wrap; }
-    .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--green)); color: var(--bg); border: none; padding: 0.85rem 2rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-    .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--white); padding: 0.85rem 2rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; cursor: pointer; transition: border-color 0.2s; }
-    .btn-ghost:hover { border-color: var(--cyan); }
-    .stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); animation: fadeUp 0.7s 0.4s ease both; flex-wrap: wrap; }
-    .stat-val { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--cyan); }
-    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+    /* ── SECTIONS ── */
+    section { position: relative; z-index: 1; padding: 7rem 4rem; }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.2rem; font-weight: 600;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; text-transform: uppercase;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 1.2rem;
+    }
+    .section-title em { font-style: italic; color: var(--green); text-transform: none; font-family: 'Barlow', sans-serif; font-weight: 300; }
+    .section-sub { color: var(--muted); max-width: 640px; line-height: 1.8; font-size: 1rem; margin-bottom: 3.5rem; }
 
-    /* SECTIONS */
-    section { position: relative; z-index: 1; padding: 6rem 4rem; }
-    .section-label { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem; }
-    .section-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -1px; margin-bottom: 1rem; }
-    .section-sub { color: var(--muted); max-width: 680px; line-height: 1.85; margin-bottom: 3rem; }
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 8rem 4rem 5rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: radial-gradient(ellipse at 80% 50%, rgba(0,230,118,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 900px; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--green); margin-bottom: 2rem; font-weight: 600;
+      animation: fadeUp 0.6s ease both;
+    }
+    .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
-    /* UNDER CONSTRUCTION */
-    .under-construction { margin-top: 3.5rem; border: 1px dashed rgba(0,200,255,0.3); border-radius: 16px; padding: 4rem 2rem; text-align: center; background: rgba(0,200,255,0.03); }
-    .uc-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
-    .uc-title { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.8rem; }
-    .uc-text { color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0 auto 1.5rem; }
-    .uc-badge { display: inline-block; background: rgba(255,200,0,0.1); border: 1px solid rgba(255,200,0,0.3); border-radius: 100px; padding: 0.35rem 1.2rem; font-size: 0.78rem; color: #ffc800; letter-spacing: 1px; text-transform: uppercase; }
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; text-transform: uppercase;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 0.95; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 2rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1 em { font-style: italic; color: var(--green); font-weight: 700; text-transform: none; font-family: 'Barlow', sans-serif; }
+    h1 .dim { color: var(--muted); }
 
-    /* CARDS GRID */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card { border: 1px solid var(--border); border-radius: 12px; padding: 2rem; background: var(--card-bg); transition: border-color 0.3s, transform 0.3s; }
-    .card:hover { border-color: var(--cyan); transform: translateY(-4px); }
-    .card-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
-    .card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.7rem; color: var(--white); }
-    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .hero-sub-text {
+      font-size: 1.1rem; color: var(--muted); max-width: 580px;
+      line-height: 1.85; margin-bottom: 3rem;
+      animation: fadeUp 0.7s 0.2s ease both; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.3s ease both; }
+    .btn-primary {
+      background: var(--green); color: var(--bg); border: none;
+      padding: 1rem 2.5rem; border-radius: 2px;
+      font-family: 'Barlow', sans-serif; font-weight: 600;
+      font-size: 0.82rem; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border2);
+      color: var(--off-white); padding: 1rem 2.5rem; border-radius: 2px;
+      font-family: 'Barlow', sans-serif; font-size: 0.82rem;
+      letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green); }
 
-    /* SPLIT GRID */
-    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .point-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-    .point-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); transition: border-color 0.2s; }
-    .point-item:hover { border-color: var(--green); }
-    .point-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-top: 5px; flex-shrink: 0; box-shadow: 0 0 8px var(--green); }
-    .point-item span { font-size: 0.9rem; color: var(--white); line-height: 1.6; }
-    .highlight-box { border: 1px solid var(--border); border-radius: 12px; padding: 2.2rem; background: var(--card-bg); }
-    .highlight-box h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--green); margin-bottom: 1rem; }
-    .highlight-box p { font-size: 0.9rem; color: var(--muted); line-height: 1.85; }
+    .stats {
+      display: flex; gap: 5rem; margin-top: 5rem; padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.7s 0.4s ease both; flex-wrap: wrap;
+    }
+    .stat-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem; font-weight: 700; color: var(--green);
+      line-height: 1; letter-spacing: -1px;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
 
-    /* APPROACH STEPS */
-    .approach-steps { display: flex; flex-direction: column; max-width: 750px; margin-bottom: 4rem; }
-    .step { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
-    .step:last-child { border-bottom: none; }
-    .step-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--cyan); opacity: 0.25; min-width: 3rem; line-height: 1; }
-    .step h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; color: var(--white); }
+    /* ── CARDS GRID ── */
+    .cards-grid { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .cards-grid.three-col { grid-template-columns: repeat(3, 1fr); }
+    .cards-grid.four-col { grid-template-columns: repeat(4, 1fr); }
+    .cards-grid.two-col { grid-template-columns: repeat(2, 1fr); }
+    .card {
+      background: var(--surface); padding: 2.5rem;
+      transition: background 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 0; background: var(--green);
+      transition: height 0.3s ease;
+    }
+    .card:hover { background: var(--surface2); }
+    .card:hover::before { height: 100%; }
+    .card-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; color: var(--green);
+      margin-bottom: 1.5rem; letter-spacing: 3px; font-weight: 600;
+    }
+    .card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.2rem;
+      margin-bottom: 0.8rem; color: var(--white);
+      line-height: 1.25; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .card p { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── SPLIT ── */
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .point-list { list-style: none; display: flex; flex-direction: column; }
+    .point-item {
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      padding: 1.2rem 0; border-bottom: 1px solid var(--border);
+    }
+    .point-item:first-child { border-top: 1px solid var(--border); }
+    .point-arrow { color: var(--green); font-size: 0.9rem; margin-top: 2px; flex-shrink: 0; font-weight: 700; }
+    .point-item span { font-size: 0.92rem; color: var(--off-white); line-height: 1.65; }
+    .text-block h3 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 1.6rem; color: var(--white); margin-bottom: 1.2rem;
+      line-height: 1.2; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .text-block p { font-size: 0.9rem; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
+    .formerly {
+      font-size: 0.75rem; color: var(--muted); margin-top: 2rem;
+      padding-top: 1.5rem; border-top: 1px solid var(--border);
+      letter-spacing: 0.3px; font-style: italic;
+    }
+
+    /* ── STEPS ── */
+    .approach-steps { display: flex; flex-direction: column; max-width: 780px; margin-bottom: 5rem; }
+    .step {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 2rem; align-items: start;
+      padding: 2rem 0; border-bottom: 1px solid var(--border);
+    }
+    .step:first-child { border-top: 1px solid var(--border); }
+    .step-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; font-weight: 800; color: var(--green);
+      opacity: 0.3; line-height: 1;
+    }
+    .step h4 {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 1.1rem; margin-bottom: 0.4rem; color: var(--white);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
     .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
-    /* MISSION */
-    .mission-box { border: 1px solid rgba(0,255,136,0.2); border-radius: 16px; padding: 3.5rem; background: rgba(0,255,136,0.03); text-align: center; max-width: 800px; margin: 0 auto; }
-    .mission-box p { font-size: 1.1rem; color: var(--white); line-height: 1.95; }
-    .mission-box em { color: var(--green); font-style: normal; font-weight: 500; }
+    /* ── MISSION ── */
+    .mission-box {
+      border: 1px solid rgba(0,230,118,0.25);
+      padding: 4rem 5rem; max-width: 900px; margin: 0 auto;
+      position: relative; background: var(--green-dim);
+    }
+    .mission-box::before {
+      content: '"';
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10rem; font-weight: 800; color: var(--green);
+      opacity: 0.12; position: absolute; top: -1.5rem; left: 2rem;
+      line-height: 1;
+    }
+    .mission-box blockquote {
+      font-family: 'Barlow', sans-serif; font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-weight: 300; line-height: 1.85; font-style: italic;
+      color: var(--off-white); position: relative; z-index: 1;
+    }
+    .mission-box cite {
+      display: block; margin-top: 1.5rem; font-size: 0.72rem;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--green); font-style: normal; font-weight: 600;
+    }
 
-    /* CAREERS */
-    #careers .careers-box { margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; padding: 3rem; background: var(--card-bg); text-align: center; max-width: 650px; margin-left: auto; margin-right: auto; }
-    #careers .careers-box p { color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; }
+    /* ── UNDER CONSTRUCTION ── */
+    .under-construction {
+      border: 1px solid var(--border); padding: 5rem 2rem;
+      text-align: center; background: var(--surface);
+    }
+    .uc-label { font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; color: var(--green); margin-bottom: 0.8rem; font-weight: 600; }
+    .uc-title { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; }
+    .uc-text { color: var(--muted); font-size: 0.9rem; line-height: 1.75; max-width: 400px; margin: 0 auto 1.5rem; }
+    .uc-badge { display: inline-block; background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,230,118,0.3); border-radius: 2px; padding: 0.3rem 1rem; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
 
-    /* CONTACT */
-    #contact { text-align: center; }
-    .contact-box { max-width: 700px; margin: 3rem auto 0; border: 1px solid var(--border); border-radius: 16px; padding: 3rem; background: var(--card-bg); }
-    .contact-box > p { color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
-    .contact-email { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: var(--cyan); text-decoration: none; display: block; margin-bottom: 2rem; transition: opacity 0.2s; }
+    /* ── CAREERS ── */
+    .careers-box { border: 1px solid var(--border); padding: 3.5rem; background: var(--surface); max-width: 680px; }
+    .careers-box p { color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; font-size: 0.92rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+    .contact-box { max-width: 680px; }
+    .contact-email {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--green); text-decoration: none;
+      display: block; margin-bottom: 2.5rem; transition: opacity 0.2s;
+    }
     .contact-email:hover { opacity: 0.7; }
-    .map-container { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 2rem; }
-    .map-container iframe { display: block; width: 100%; height: 300px; border: none; }
+    .address-block { padding: 1.8rem; border: 1px solid var(--border); background: var(--bg); margin-bottom: 1.5rem; }
+    .address-block strong { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 0.6rem; }
+    .address-block p { font-size: 0.85rem; color: var(--muted); line-height: 1.9; }
+    .map-container { border: 1px solid var(--border); overflow: hidden; }
+    .map-container iframe { display: block; width: 100%; height: 300px; border: none; filter: grayscale(100%) invert(90%) contrast(90%); }
 
-    /* FOOTER */
-    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    footer p { font-size: 0.82rem; color: var(--muted); }
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem; background: var(--bg);
+    }
+    footer p { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.5px; }
+    .footer-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; color: var(--green); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; }
 
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    /* ── DIVIDER LINES ── */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
       section, #hero { padding: 5rem 1.5rem 3rem; }
-      .stats { gap: 1.5rem; }
-      .split-grid { grid-template-columns: 1fr; gap: 2rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .stats { gap: 2.5rem; }
+      .split-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards-grid.three-col, .cards-grid.four-col, .cards-grid.two-col { grid-template-columns: 1fr; }
+      .mission-box { padding: 2.5rem 2rem; }
+      footer { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
-
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
 
   <!-- MODAL -->
   <div class="modal-overlay" id="ucModal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeModal()">✕</button>
       <div class="modal-icon">🚧</div>
-      <h2 id="modalTitle">Page Under Construction</h2>
-      <p id="modalDesc">We're working hard to bring this page to life. Check back soon — something great is coming!</p>
+      <h2 id="modalTitle">Coming Soon</h2>
+      <p id="modalDesc"></p>
       <div class="modal-badge">Coming Soon</div>
       <p id="modalNote" style="margin-top:1rem; font-size:0.78rem; color:var(--muted); font-style:italic; display:none;"></p>
     </div>
@@ -177,22 +337,24 @@
       <li><a href="#why">Why Lakshiv</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="#careers">Careers</a></li>
-      <li><a href="https://login.lakshiv.co.in/login" target="_blank" class="nav-email-link">Email</a></li>
+      <li><a href="https://login.lakshiv.co.in/login/" target="_blank" class="nav-email-link">Email</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
     <div class="hero-inner">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
         Lakshiv Technologies &amp; Services
       </div>
       <h1>
-        Engineering <span class="accent">Smarter</span> Systems<br/>
-        for a <span class="accent2">Connected</span> Future
+        Engineering <em>Smarter</em><br/>
+        Systems That<br/>
+        <span class="dim">Deliver Today,</span><br/>
+        Scale Tomorrow
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub-text">
         We design and build intelligent systems that empower organizations, industries, and individuals to make informed decisions, improve operational efficiency, and embrace automation with confidence.
       </p>
       <div class="hero-btns">
@@ -201,112 +363,79 @@
       </div>
       <div class="stats">
         <div><div class="stat-val">50+</div><div class="stat-label">Projects Delivered</div></div>
-        <div><div class="stat-val">10,000+</div><div class="stat-label">Sq. Ft. Automated</div></div>
         <div><div class="stat-val">100%</div><div class="stat-label">Client Satisfaction</div></div>
       </div>
     </div>
   </section>
 
   <!-- SECTION 1: THREE CORE PRINCIPLES -->
-  <section id="principles" style="background: var(--surface);">
+  <section id="principles" style="background: var(--surface); border-top: 1px solid var(--border);">
     <div class="section-label reveal">Our Foundation</div>
-    <h2 class="section-title reveal">Our Solutions Are Built Around<br/>Three Fundamental Principles</h2>
+    <h2 class="section-title reveal">Three Fundamental<br/><em>Principles</em></h2>
     <p class="section-sub reveal">Every system we design, every project we deliver — is shaped by these three principles at its core.</p>
-    <div class="cards-grid">
+    <div class="cards-grid three-col">
       <div class="card reveal">
-        <span class="card-icon">📡</span>
+        <div class="card-num">01 —</div>
         <h3>Smart Systems for Real-Time Monitoring</h3>
         <p>We create advanced monitoring systems that capture and present live operational data from electrical, industrial, commercial, and connected environments. By transforming raw data into meaningful insights, our solutions provide complete visibility into critical processes and assets.</p>
       </div>
       <div class="card reveal">
-        <span class="card-icon">📊</span>
+        <div class="card-num">02 —</div>
         <h3>Smart Systems for Data Analysis</h3>
         <p>Data becomes valuable only when it drives better decisions. Our intelligent analytics platforms help identify trends, optimize performance, predict issues, and uncover opportunities for improvement — enabling businesses to move from reactive operations to proactive management.</p>
       </div>
       <div class="card reveal">
-        <span class="card-icon">🤖</span>
+        <div class="card-num">03 —</div>
         <h3>Smart &amp; Self-Reliant Automation Systems</h3>
         <p>We develop autonomous and intelligent automation solutions that streamline routine operations, reduce manual intervention, and ensure consistent performance. These systems are designed to operate reliably while adapting to changing operational requirements.</p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 2: TECHNOLOGY THAT COMPLEMENTS HUMAN EXPERTISE -->
-  <section id="expertise">
+  <!-- SECTION 2: TECHNOLOGY & HUMAN EXPERTISE -->
+  <section id="expertise" style="border-top: 1px solid var(--border);">
     <div class="section-label reveal">Our Philosophy</div>
-    <h2 class="section-title reveal">Technology That Complements<br/>Human Expertise</h2>
+    <h2 class="section-title reveal">Technology That<br/><em>Complements Human Expertise</em></h2>
     <p class="section-sub reveal">We believe technology should enhance human capabilities rather than replace them.</p>
     <div class="split-grid">
       <ul class="point-list">
-        <li class="point-item reveal"><div class="point-dot"></div><span>Minimize human errors and reduce operational negligence</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Free valuable human resources from repetitive tasks</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Allow people to focus on experience, judgment, creativity, and decision-making</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Combine intelligent automation with human expertise</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Achieve higher productivity and greater reliability</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Deliver improved operational excellence</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Minimize human errors and reduce operational negligence</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Free valuable human resources from repetitive tasks</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Allow people to focus on experience, judgment, creativity, and decision-making</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Combine intelligent automation with human expertise</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Achieve higher productivity and greater reliability</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Deliver improved operational excellence</span></li>
       </ul>
-      <div class="highlight-box reveal">
+      <div class="text-block reveal">
         <h3>Setting New Standards in Engineering Excellence</h3>
-        <p>Innovation is not limited to our products — it is reflected in every project we execute. We continuously challenge conventional approaches and redefine industry standards through:<br/><br/>
-        Intelligent IoT and IIoT solutions · Embedded product development · Smart electrical infrastructure · Energy monitoring and management systems · Industrial automation platforms · Smart home and building technologies · Custom software, dashboards, and mobile applications.</p>
+        <p>Innovation is not limited to our products — it is reflected in every project we execute. We continuously challenge conventional approaches and redefine industry standards.</p>
+        <p>Our areas of excellence: Intelligent IoT and IIoT solutions · Embedded product development · Smart electrical infrastructure · Energy monitoring and management systems · Industrial automation platforms · Smart home and building technologies · Custom software, dashboards, and mobile applications.</p>
       </div>
     </div>
   </section>
 
   <!-- SECTION 3: PROVEN EXPERTISE -->
-  <section id="capabilities" style="background: var(--surface);">
+  <section id="capabilities" style="background: var(--surface); border-top: 1px solid var(--border);">
     <div class="section-label reveal">What We Deliver</div>
-    <h2 class="section-title reveal">Proven Expertise in Electrical &amp;<br/>Smart Infrastructure Projects</h2>
-    <p class="section-sub reveal">Our team has successfully executed complex electrical and automation projects across commercial, industrial, and residential sectors. From large commercial establishments to premium smart homes, we have delivered end-to-end electrical and intelligent automation solutions for projects exceeding 10,000 square feet of carpet area.</p>
-    <div class="cards-grid">
-      <div class="card reveal">
-        <span class="card-icon">🔌</span>
-        <h3>Electrical Design &amp; Execution</h3>
-        <p>End-to-end electrical design and execution for commercial, industrial, and residential environments — built to the highest standards of safety and performance.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🏠</span>
-        <h3>Smart Home Automation</h3>
-        <p>Complete intelligent home automation systems covering lighting, climate, security, and unified control — designed for premium living experiences.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🏭</span>
-        <h3>Industrial Monitoring Systems</h3>
-        <p>Real-time industrial monitoring platforms that provide full visibility into manufacturing and operational environments with live data and predictive alerts.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🔋</span>
-        <h3>Energy Management Solutions</h3>
-        <p>Intelligent energy monitoring and management systems that help organizations track consumption, reduce costs, and operate more sustainably.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🏢</span>
-        <h3>Building Management Systems</h3>
-        <p>Integrated BMS solutions that centralize control of building infrastructure — HVAC, lighting, access, and energy — for peak operational efficiency.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">☀️</span>
-        <h3>Renewable Energy Integration</h3>
-        <p>Seamless integration of renewable energy sources with existing electrical infrastructure, supported by intelligent monitoring and load management.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">🌐</span>
-        <h3>IoT &amp; IIoT Deployments</h3>
-        <p>Custom Internet of Things and Industrial IoT solutions that connect assets, systems, and people — delivering real-time data and intelligent control.</p>
-      </div>
-      <div class="card reveal">
-        <span class="card-icon">⚙️</span>
-        <h3>Custom Control &amp; Automation Solutions</h3>
-        <p>Bespoke control and automation systems designed precisely around client requirements — from embedded hardware to cloud-connected platforms.</p>
-      </div>
+    <h2 class="section-title reveal">Proven Expertise in Electrical &amp;<br/><em>Smart Infrastructure Projects</em></h2>
+    <p class="section-sub reveal">Our team has successfully executed complex electrical and automation projects across commercial, industrial, and residential sectors — including projects exceeding 10,000 square feet of carpet area.</p>
+    <div class="cards-grid four-col">
+      <div class="card reveal"><div class="card-num">01 —</div><h3>Electrical Design &amp; Execution</h3><p>End-to-end electrical design and execution for commercial, industrial, and residential environments.</p></div>
+      <div class="card reveal"><div class="card-num">02 —</div><h3>Smart Home Automation</h3><p>Complete intelligent home automation systems covering lighting, climate, security, and unified control.</p></div>
+      <div class="card reveal"><div class="card-num">03 —</div><h3>Industrial Monitoring Systems</h3><p>Real-time industrial monitoring platforms with live data, dashboards, and predictive alerts.</p></div>
+      <div class="card reveal"><div class="card-num">04 —</div><h3>Energy Management Solutions</h3><p>Intelligent energy monitoring and management systems to track consumption and reduce costs.</p></div>
+      <div class="card reveal"><div class="card-num">05 —</div><h3>Building Management Systems</h3><p>Integrated BMS solutions centralizing HVAC, lighting, access, and energy for peak efficiency.</p></div>
+      <div class="card reveal"><div class="card-num">06 —</div><h3>Renewable Energy Integration</h3><p>Seamless integration of renewable energy sources with intelligent monitoring and load management.</p></div>
+      <div class="card reveal"><div class="card-num">07 —</div><h3>IoT &amp; IIoT Deployments</h3><p>Custom IoT and Industrial IoT solutions connecting assets, systems, and people in real time.</p></div>
+      <div class="card reveal"><div class="card-num">08 —</div><h3>Custom Control &amp; Automation</h3><p>Bespoke automation systems from embedded hardware to cloud-connected platforms.</p></div>
     </div>
   </section>
 
-  <!-- SECTION 4: WHY LAKSHIV — BUILT AROUND YOUR REQUIREMENTS -->
-  <section id="why">
+  <!-- SECTION 4: WHY LAKSHIV -->
+  <section id="why" style="border-top: 1px solid var(--border);">
     <div class="section-label reveal">Why Lakshiv</div>
-    <h2 class="section-title reveal">Built Around Your Requirements,<br/>Not Around Existing Products</h2>
-    <p class="section-sub reveal">Every organization has unique challenges, processes, and objectives. Rather than forcing clients to adapt their operations to pre-built products, we begin by understanding their requirements, workflows, and real-world use cases — then design and develop solutions specifically tailored to meet those needs. Our approach is consultative, collaborative, and engineering-driven.</p>
+    <h2 class="section-title reveal">Built Around Your Requirements,<br/><em>Not Around Existing Products</em></h2>
+    <p class="section-sub reveal">Every organization has unique challenges, processes, and objectives. Rather than forcing clients to adapt their operations to pre-built products, we begin by understanding their requirements, workflows, and real-world use cases — then design and develop solutions specifically tailored to meet those needs.</p>
     <div class="approach-steps">
       <div class="step reveal"><div class="step-num">01</div><div><h4>Understand the Client's Operational Challenges</h4><p>We invest time to deeply understand your environment, pain points, and goals before suggesting any solution.</p></div></div>
       <div class="step reveal"><div class="step-num">02</div><div><h4>Analyze Existing Processes &amp; Requirements</h4><p>A thorough analysis of your workflows, systems, and real-world use cases forms the foundation of everything we design.</p></div></div>
@@ -316,99 +445,100 @@
     </div>
     <div class="split-grid">
       <ul class="point-list">
-        <li class="point-item reveal"><div class="point-dot"></div><span>Minimize human errors and reduce operational negligence</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Free valuable human resources from repetitive tasks</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Allow people to focus on experience, judgment, creativity, and decision-making</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Combine intelligent automation with human expertise</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Achieve higher productivity and greater reliability</span></li>
-        <li class="point-item reveal"><div class="point-dot"></div><span>Deliver improved operational excellence</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Minimize human errors and reduce operational negligence</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Free valuable human resources from repetitive tasks</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Allow people to focus on experience, judgment, creativity, and decision-making</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Combine intelligent automation with human expertise</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Achieve higher productivity and greater reliability</span></li>
+        <li class="point-item reveal"><div class="point-arrow">→</div><span>Deliver improved operational excellence</span></li>
       </ul>
-      <div class="highlight-box reveal">
+      <div class="text-block reveal">
         <h3>Technology That Complements Human Expertise</h3>
-        <p>We believe technology should enhance human capabilities rather than replace them. Our smart systems minimize human errors, reduce operational negligence, and free valuable human resources from repetitive tasks — allowing people to focus on activities where experience, judgment, creativity, and decision-making truly matter.<br/><br/>
-        By combining intelligent automation with human expertise, we help organizations achieve higher productivity, greater reliability, and improved operational excellence.</p>
-        <p style="margin-top:1.5rem; font-size:0.78rem; color:var(--muted); font-style:italic;">Formerly known as Enersys Energy Solutions Pvt. Ltd</p>
+        <p>We believe technology should enhance human capabilities rather than replace them. Our smart systems minimize human errors, reduce operational negligence, and free valuable human resources from repetitive tasks — allowing people to focus on activities where experience, judgment, creativity, and decision-making truly matter.</p>
+        <p>By combining intelligent automation with human expertise, we help organizations achieve higher productivity, greater reliability, and improved operational excellence.</p>
+        <div class="formerly">Formerly known as Enersys Energy Solutions Pvt. Ltd</div>
       </div>
     </div>
   </section>
 
   <!-- SECTION 5: OUR MISSION -->
-  <section id="mission" style="background: var(--surface);">
+  <section id="mission" style="background: var(--surface); border-top: 1px solid var(--border);">
     <div class="section-label reveal">Our Mission</div>
     <h2 class="section-title reveal">Why We Exist</h2>
     <div class="mission-box reveal">
-      <p>To design <em>intelligent, reliable, and scalable solutions</em> that connect the physical and digital worlds, enabling businesses and individuals to operate smarter, safer, and more efficiently.<br/><br/>
-      From <em>Embedded Systems and IIoT Platforms</em> to <em>Smart Electrical Infrastructure and Automation Solutions</em> — we transform ideas into intelligent systems that create measurable impact.</p>
+      <blockquote>
+        To design intelligent, reliable, and scalable solutions that connect the physical and digital worlds — enabling businesses and individuals to operate smarter, safer, and more efficiently. From Embedded Systems and IIoT Platforms to Smart Electrical Infrastructure and Automation Solutions, we transform ideas into intelligent systems that create measurable impact.
+      </blockquote>
+      <cite>Lakshiv Technologies &amp; Services</cite>
     </div>
   </section>
 
   <!-- PRODUCTS — COMING SOON -->
-  <section id="products">
+  <section id="products" style="border-top: 1px solid var(--border);">
     <div class="section-label reveal">What We Offer</div>
     <h2 class="section-title reveal">Products</h2>
     <p class="section-sub reveal">Innovative hardware and software products engineered in-house at Lakshiv.</p>
     <div class="under-construction reveal">
-      <span class="uc-icon">🚧</span>
-      <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're building our product catalogue. Check back soon for something exciting!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
+      <div class="uc-label">Status</div>
+      <div class="uc-title">Under Construction</div>
+      <p class="uc-text">We're building our product catalogue. Check back soon for something exciting.</p>
+      <span class="uc-badge">Coming Soon</span>
     </div>
   </section>
 
   <!-- SERVICES — COMING SOON -->
-  <section id="services" style="background: var(--surface);">
+  <section id="services" style="background: var(--surface); border-top: 1px solid var(--border);">
     <div class="section-label reveal">What We Do</div>
     <h2 class="section-title reveal">Services</h2>
     <p class="section-sub reveal">From wiring to code — electrical, IoT, home automation, and software under one roof.</p>
     <div class="under-construction reveal">
-      <span class="uc-icon">⚙️</span>
-      <div class="uc-title">Page Under Construction</div>
-      <p class="uc-text">We're putting together detailed service pages with case studies, pricing, and process walkthroughs. Back soon!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
+      <div class="uc-label">Status</div>
+      <div class="uc-title">Under Construction</div>
+      <p class="uc-text">We're putting together detailed service pages with case studies, pricing, and process walkthroughs.</p>
+      <span class="uc-badge">Coming Soon</span>
     </div>
   </section>
 
   <!-- PROJECTS — COMING SOON -->
-  <section id="projects">
+  <section id="projects" style="border-top: 1px solid var(--border);">
     <div class="section-label reveal">Portfolio</div>
     <h2 class="section-title reveal">Our Projects</h2>
     <p class="section-sub reveal">A showcase of the intelligent systems we have designed and delivered across commercial, industrial, and residential sectors.</p>
     <div class="under-construction reveal">
-      <span class="uc-icon">🚀</span>
+      <div class="uc-label">Status</div>
       <div class="uc-title">Coming Soon</div>
-      <p class="uc-text">We're documenting our completed projects and will be showcasing them here very soon. Stay tuned!</p>
-      <span class="uc-badge">⏳ Coming Soon</span>
+      <p class="uc-text">We're documenting our completed projects and will be showcasing them here very soon.</p>
+      <span class="uc-badge">Coming Soon</span>
     </div>
   </section>
 
   <!-- CAREERS -->
-  <section id="careers" style="background: var(--surface);">
+  <section id="careers" style="background: var(--surface); border-top: 1px solid var(--border);">
     <div class="section-label reveal">Join Us</div>
     <h2 class="section-title reveal">Careers</h2>
     <div class="careers-box reveal">
       <p>We're a growing team passionate about technology, innovation, and making a real-world impact. If you love solving hard problems at the intersection of hardware and software — we'd love to hear from you.</p>
-      <p>Send your profile to <a href="mailto:info@lakshiv.co.in" style="color:var(--cyan); text-decoration:none;">info@lakshiv.co.in</a> with the subject <strong style="color:var(--white);">"Join Lakshiv"</strong>.</p>
+      <p>Send your profile to <a href="mailto:info@lakshiv.co.in" style="color:var(--green); text-decoration:none;">info@lakshiv.co.in</a> with the subject <strong style="color:var(--white);">"Join Lakshiv"</strong>.</p>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="section-label reveal">Get In Touch</div>
-    <h2 class="section-title reveal">Let's Build Something Together</h2>
-    <div class="contact-box reveal">
-      <p>Have a project in mind? Whether it's smart infrastructure, an IoT system, or a custom automation solution — we'd love to hear from you.</p>
-      <a class="contact-email" href="mailto:info@lakshiv.co.in">info@lakshiv.co.in</a>
-      <div style="text-align:left; margin-bottom:1.2rem; padding:1.2rem 1.5rem; border:1px solid var(--border); border-radius:8px; background:rgba(0,200,255,0.03);">
-        <div style="font-size:0.88rem; color:var(--muted); line-height:1.9;">
-          <strong style="color:var(--white); font-size:0.95rem;">Lakshiv Technologies &amp; Services Pvt. Ltd</strong><br/>
+    <h2 class="section-title reveal">Let's Build Something<br/><em>Together</em></h2>
+    <div class="contact-box">
+      <p class="section-sub reveal">Have a project in mind? Whether it's smart infrastructure, an IoT system, or a custom automation solution — we'd love to hear from you.</p>
+      <a class="contact-email reveal" href="mailto:info@lakshiv.co.in">info@lakshiv.co.in</a>
+      <div class="address-block reveal">
+        <strong>Lakshiv Technologies &amp; Services Pvt. Ltd</strong>
+        <p>
           #304, 3rd Floor, SV Landmark Building<br/>
-          Bollaram –&gt; Miyapur Main Road, Above Paramitha Hospital<br/>
-          Near Volvo Bus Stop, Hyderabad<br/>
-          Telangana – 500090, India
-        </div>
+          Bollaram – Miyapur Main Road, Above Paramitha Hospital<br/>
+          Near Volvo Bus Stop, Hyderabad, Telangana – 500090, India
+        </p>
       </div>
-      <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.5458775230177!2d78.35308207591244!3d17.529178498703505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ddcb8044ab3%3A0xd490b22fe8e6e991!2sSV%20Landmark%20Apartment!5e0!3m2!1sen!2sin!4v1779254982602!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-container reveal">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.5458775230177!2d78.35308207591244!3d17.529178498703505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ddcb8044ab3%3A0xd490b22fe8e6e991!2sSV%20Landmark%20Apartment!5e0!3m2!1sen!2sin!4v1779254982602!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -416,7 +546,7 @@
   <!-- FOOTER -->
   <footer>
     <p>© 2025 Lakshiv Technologies &amp; Services Pvt. Ltd. India. All rights reserved.</p>
-    <p style="color:var(--cyan); font-family:'Syne',sans-serif; font-size:0.85rem;">Engineering Smarter Systems for a Connected Future.</p>
+    <p class="footer-brand">Deliver Today. Scale Tomorrow.</p>
   </footer>
 
   <script>
