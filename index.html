@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lakshiv Technologies & Services — Engineering Smarter Systems</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link
     href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
@@ -45,7 +46,8 @@
     }
 
     /* ── NAV ── */
-  nav {
+ /* ── NAV ── */
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,62 +58,57 @@
   align-items: center;
   justify-content: space-between;
 
-  height: 72px;
-  padding: 0 2rem;
+  height: 78px;
+  padding: 0 2.5rem;
 
-  background: rgba(10, 10, 10, 0.92);
-  backdrop-filter: blur(16px);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
 
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      height: 72px;
-    }
-
-.logo img {
-    width: 250px;
-    height: auto;
-    display: block;
+.logo{
+  display:flex;
+  align-items:center;
+  height:78px;
 }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      align-items: center;
-    }
+.logo img{
+  width:220px;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
+   .nav-links a {
+    color: #475569;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover{
+    color:#00E676;
+}
 
     .nav-links a:hover {
       color: var(--white);
     }
 
-    .nav-email-link {
-      background: var(--green) !important;
-      color: var(--bg) !important;
-      padding: 0.5rem 1.3rem;
-      border-radius: 2px;
-      font-size: 0.75rem !important;
-      font-weight: 600 !important;
-      letter-spacing: 1.5px !important;
-      transition: opacity 0.2s !important;
-    }
+   .nav-email-link{
+    background:#00E676 !important;
+    color:#0F172A !important;
+    padding:0.6rem 1.5rem;
+    border-radius:6px;
+    font-weight:700 !important;
+}
 
-    .nav-email-link:hover {
-      opacity: 0.85 !important;
-    }
+.nav-email-link:hover{
+    opacity:0.9;
+}
 
     /* ── MODAL ── */
     .modal-overlay {
