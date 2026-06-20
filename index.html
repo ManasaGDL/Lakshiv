@@ -561,6 +561,12 @@
         }
     }
 
+    .menu-btn,
+    .menu-close,
+    .menu-overlay {
+        display: none;
+    }
+
     .m-card {
         flex: 0 0 auto;
         width: 300px;
@@ -1104,57 +1110,277 @@
         transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    /* Desktop */
+
+    .menu-btn,
+    .menu-close,
+    .menu-overlay {
+        display: none;
+    }
+
+    /* Prevent body scroll when menu opens */
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+
+    /* Overlay */
+
+    .menu-overlay {
+
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(0, 0, 0, .45);
+
+        backdrop-filter: blur(3px);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transition: .3s ease;
+
+        z-index: 998;
+    }
+
+    .menu-overlay.show {
+
+        opacity: 1;
+
+        visibility: visible;
+    }
+
+
+    /* Mobile */
+
+    @media (max-width:900px) {
+
         nav {
-            padding: 1rem 1.5rem;
+
+            height: 60px;
+
+            padding: 0 18px;
         }
 
-        .nav-links {
-            display: none;
+        .logo {
+
+            height: 60px;
         }
+
+        .logo img {
+
+            width: 160px;
+
+            height: auto;
+        }
+
+        /* Hamburger */
+
+        .menu-btn {
+
+            display: block;
+
+            font-size: 30px;
+
+            color: var(--green);
+
+            cursor: pointer;
+
+            z-index: 1001;
+        }
+
+        /* Drawer */
+
+        .nav-links {
+
+            position: fixed;
+
+            top: 60px;
+
+            right: -100%;
+
+            width: 260px;
+
+            max-width: 85%;
+
+            height: calc(100vh - 60px);
+
+            background: var(--bg);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: flex-start;
+
+            gap: 1.5rem;
+
+            padding: 2rem;
+
+            box-shadow:
+                -10px 0 30px rgba(0, 0, 0, .15);
+
+            transition: .35s ease;
+
+            z-index: 999;
+        }
+
+        .nav-links.open {
+
+            right: 0;
+        }
+
+        .nav-links li {
+
+            width: 100%;
+        }
+
+        .nav-links a {
+
+            display: block;
+
+            width: 100%;
+
+            padding: 12px 0;
+        }
+
+        /* Close icon */
+
+        .menu-close {
+
+            display: block;
+
+            position: absolute;
+
+            top: 18px;
+
+            right: 22px;
+
+            font-size: 28px;
+
+            color: var(--green);
+
+            cursor: pointer;
+
+            z-index: 1001;
+        }
+
+        /* Email button */
+
+        .nav-email-link {
+
+            display: inline-block;
+
+            width: fit-content;
+
+            margin-top: 12px;
+        }
+
+        /* Theme button */
+
+        .theme-btn {
+
+            margin: 20px auto 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 48px;
+
+            height: 48px;
+        }
+
+        /* Sections */
 
         section,
         #hero {
-            padding: 5rem 1.5rem 3rem;
+
+            padding: 4rem 1.2rem 3rem;
         }
 
-        .stats {
-            gap: 2.5rem;
+        .section-title {
+
+            font-size: 2rem;
+
+            line-height: 1.2;
+        }
+
+        h1 {
+
+            font-size: 2rem;
+        }
+
+        .hero-sub-text {
+
+            font-size: .95rem;
+
+            line-height: 1.8;
         }
 
         .split-grid {
+
             grid-template-columns: 1fr;
-            gap: 2.5rem;
+
+            gap: 2rem;
         }
 
         .cards-grid.three-col,
         .cards-grid.four-col,
         .cards-grid.two-col {
+
             grid-template-columns: 1fr;
         }
 
+        .card {
+
+            padding: 1.8rem;
+        }
+
         .mission-box {
-            padding: 2.5rem 2rem;
+
+            padding: 2rem 1.5rem;
         }
 
         .m-card {
-            width: 240px;
-            padding: 1.2rem 1.1rem;
+
+            width: 220px;
+
+            min-width: 220px;
+
+            padding: 1rem;
         }
 
         .m-card.headline {
-            width: 280px;
+
+            width: 260px;
         }
 
         .m-card img {
+
             height: 40px;
         }
 
-        footer {
-            flex-direction: column;
-            text-align: center;
+        .contact-email {
+
+            font-size: 1.5rem;
+
+            word-break: break-word;
         }
+
+        footer {
+
+            flex-direction: column;
+
+            text-align: center;
+
+            padding: 1.5rem;
+        }
+
     }
 </style>
 </head>
@@ -1173,25 +1399,64 @@
                 style="margin-top:1rem; font-size:0.78rem; color:var(--muted); font-style:italic; display:none;"></p>
         </div>
     </div>
+    <!-- Overlay -->
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
 
-    <!-- NAV -->
     <nav>
+
+        <!-- Mobile Menu Button -->
+        <div class="menu-btn" onclick="toggleMenu()">
+            ☰
+        </div>
+
+        <!-- Logo -->
         <a href="#hero" class="logo">
             <img src="images/lakshiv-logo.png" alt="Lakshiv Technologies & Services">
         </a>
-        <ul class="nav-links">
-            <li><a href="#products">Products</a>
+
+        <!-- Navigation -->
+        <ul class="nav-links" id="navLinks">
+
+            <div class="menu-close" onclick="toggleMenu()">
+                ✕
+            </div>
+
+            <li>
+                <a href="#products">Products</a>
             </li>
-            <li><a href="#services">Services</a>
+
+            <li>
+                <a href="#services">Services</a>
             </li>
-            <li><a href="#why">Why Lakshiv</a></li>
-            <li><a href="#contact" onclick="highlightAddress()">Contact</a></li>
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="https://login.lakshiv.co.in/login/" target="_blank" class="nav-email-link">Email</a></li>
-            <button id="themeToggle" class="theme-btn">
-                🌙
-            </button>
+
+            <li>
+                <a href="#why">Why Lakshiv</a>
+            </li>
+
+            <li>
+                <a href="#contact" onclick="highlightAddress()">
+                    Contact
+                </a>
+            </li>
+
+            <li>
+                <a href="#careers">Careers</a>
+            </li>
+
+            <li>
+                <a href="https://login.lakshiv.co.in/login/" target="_blank" class="nav-email-link">
+                    Email
+                </a>
+            </li>
+
+            <li>
+                <button id="themeToggle" class="theme-btn">
+                    🌙
+                </button>
+            </li>
+
         </ul>
+
     </nav>
 
     <!-- FLASHY SCROLLING CARDS -->
@@ -1788,6 +2053,17 @@
             document.body.classList.add("dark");
 
             btn.innerHTML = "☀️";
+        }
+
+        function toggleMenu() {
+
+            document.body.classList.toggle("menu-open");
+
+            document.querySelector(".nav-links")
+                .classList.toggle("open");
+
+            document.querySelector(".menu-overlay")
+                .classList.toggle("show");
         }
 
     </script>
