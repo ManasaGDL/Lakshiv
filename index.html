@@ -1,31 +1,336 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Website Favicon -->
+
     <link rel="icon" type="image/png" href="images/favicon.png" />
 
     <meta name="theme-color" content="#082d4a" />
-    <meta name="description"
-        content="Lakshiv Technologies and Services: IoT, smart electrical solutions, and solar energy systems in Hyderabad." />
+
+    <meta
+      name="description"
+      content="Lakshiv Technologies and Services: IoT, smart electrical solutions, and solar energy systems in Hyderabad."
+    />
 
     <title>Home | Lakshiv Technologies and Services</title>
 
     <!-- Main Stylesheet -->
+
     <link rel="stylesheet" href="assets/styles.css" />
-</head>
-<body class="home-page"><header><nav aria-label="Main navigation" class="nav"><a aria-label="Lakshiv Technologies and Services homepage" class="brand" href="index.html"><img alt="Lakshiv Technologies and Services" src="assets/lakshiv-original-logo.png"/></a><button aria-expanded="false" aria-label="Toggle navigation" class="menu" type="button">☰</button><div class="links" id="links"><a aria-current="page" class="active" href="index.html">Home</a><a href="products.html">Products</a><a href="solar.html">Solar</a><a href="projects.html">Projects</a><a href="why-lakshiv.html">Why Lakshiv</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div></nav></header><main><section aria-label="Lakshiv Technologies and Services" class="hero" id="home"><img alt="Approved Lakshiv Smart City Innovations hero: Smart Electrical, IoT and Smart Automation, and Solar Energy" src="assets/lakshiv-approved-smart-city-hero.png"/></section><section class="section" id="verticals"><div class="wrap"><div class="eyebrow">Three Verticals. One Integrated Vision.</div><h2>Integrated Solutions for a Smarter, Safer &amp; Sustainable World.</h2><p class="lead">We bring together IoT &amp; Smart Automation, Smart Electrical Solutions, and Solar Energy Systems to deliver connected, intelligent, and energy-efficient solutions. Each vertical complements the others, combining technology innovation, engineering expertise, and on-ground execution to create greater value for residential, commercial, and industrial customers.</p><div class="cards"><article class="card"><img alt="Industrial IoT monitoring and automation" src="assets/vertical-1.webp"/><div class="card-body"><span class="number">01 / TECHNOLOGY</span><h3>IoT Products, Real-Time Monitoring &amp; Smart Automation</h3><p>Intelligent IoT and IIoT products, connected monitoring, dashboards, mobile applications, and automation that turn real-world data into actionable insights.</p><div class="tags"><span>IoT &amp; IIoT</span><span>Real-Time Monitoring</span><span>Dashboards</span><span>Automation</span></div><a class="inline-link" href="products.html">Explore Products &amp; Applications →</a></div></article><article class="card"><img alt="Complete smart home ecosystem and mobile controls" src="assets/vertical-2.webp"/><div class="card-body"><span class="number">02 / ENGINEERING</span><h3>Smart Homes – Electrical Consultancy &amp; Execution</h3><p>Complete smart-home and electrical ecosystems: consultancy, design, infrastructure, lighting and appliance control, energy monitoring, integration, and on-site execution.</p><div class="tags"><span>Electrical Design</span><span>Smart Homes</span><span>Energy Monitoring</span><span>Execution</span></div></div></article><article class="card"><img alt="Solar PV panels in sunlight" src="assets/vertical-3.webp"/><div class="card-body"><span class="number">03 / CLEAN ENERGY</span><h3>Solar Energy Solutions &amp; Project Execution</h3><p>Solar PV consultancy, system design, installation, commissioning, and performance monitoring, integrated with intelligent electrical and automation infrastructure.</p><div class="tags"><span>Solar PV Design</span><span>Installation</span><span>Commissioning</span><span>Integration</span></div></div></article></div></div></section><section class="section solar-band" id="solar"><div class="wrap solar-grid"><div><div class="eyebrow" style="color:#89f4a4">Solar Energy Solutions</div><h2>Powering a Smarter, Greener Tomorrow</h2><p>From solar consultancy and system design to installation, commissioning, and intelligent energy monitoring, Lakshiv brings engineering expertise and connected technology together to deliver efficient solar energy solutions.</p><a class="btn" href="solar.html">Explore Solar Solutions →</a></div><img alt="Solar photovoltaic energy installation" src="assets/vertical-3.webp"/></div></section><section class="section home-links"><div class="wrap"><div class="eyebrow">Discover Lakshiv</div><h2>Explore Our Approach &amp; Applications</h2><p class="lead">Learn what drives Lakshiv and explore where our integrated solutions can be applied.</p><div class="home-link-grid"><a class="home-link-card" href="why-lakshiv.html"><h3>Why Lakshiv</h3><p>Our purpose, mission and engineering capabilities.</p><strong>Learn more →</strong></a><a class="home-link-card" href="projects.html"><h3>Projects &amp; Applications</h3><p>Commercial, residential, healthcare and institutional environments.</p><strong>Explore applications →</strong></a></div></div></section><section class="section"><div class="wrap"><div class="career-strip"><div><h2>Build Your Career with Lakshiv</h2><p>Opportunities for junior software engineers and enthusiastic freshers.</p></div><a class="btn" href="careers.html">View Open Positions →</a></div></div></section></main><footer id="footer-contact"><div class="wrap"><div class="foot"><div><img alt="Lakshiv Technologies and Services" class="footer-logo" src="assets/lakshiv-original-logo.png"/><p>Three Verticals. One Integrated Vision.</p><p>Building a Smarter, Greener &amp; More Connected Tomorrow.</p></div><div><h3>Office Address</h3><address>#304, Third Floor,<br/>SV Landmark Building,<br/>Bollaram to Miyapur Main Road,<br/>Near Volvo Bus Stop,<br/>Bachupally, Hyderabad,<br/>Telangana – 500090, India.</address></div><div><h3>Contact</h3><p><a href="tel:+919848477789">+91 98484 77789</a></p><p><a href="mailto:info@lakshiv.co.in">info@lakshiv.co.in</a></p><p><a href="contact.html">Contact page</a></p><p><a href="solar.html">Solar Solutions</a></p><p><a href="careers.html">Careers</a></p></div></div><div class="copyright">© <span id="year">2026</span> Lakshiv Technologies and Services. All rights reserved.</div></div></footer><script>document.getElementById('year').textContent=new Date().getFullYear();const b=document.querySelector('.menu'),l=document.querySelector('.links');b.addEventListener('click',()=>{const o=l.classList.toggle('open');b.setAttribute('aria-expanded',String(o))});l.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{l.classList.remove('open');b.setAttribute('aria-expanded','false')}));</script><script>
-(function () {
-  const header = document.querySelector('header');
-  if (!header) return;
-  function updateHeroHeight() {
-    document.documentElement.style.setProperty('--home-header-height', Math.ceil(header.getBoundingClientRect().height) + 'px');
-  }
-  updateHeroHeight();
-  window.addEventListener('resize', updateHeroHeight);
-  if ('ResizeObserver' in window) new ResizeObserver(updateHeroHeight).observe(header);
-})();
-</script></body></html>
+  </head>
+
+  <body class="home-page">
+    <header>
+      <nav aria-label="Main navigation" class="nav">
+        <a
+          aria-label="Lakshiv Technologies and Services homepage"
+          class="brand"
+          href="/"
+          ><img
+            alt="Lakshiv Technologies and Services"
+            src="assets/lakshiv-original-logo.png" /></a
+        ><button
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="menu"
+          type="button"
+        >
+          ☰
+        </button>
+
+        <div class="links" id="links">
+          <a aria-current="page" class="active" href="/">Home</a>
+          <a href="/products">Products</a>
+          <a href="/solar">Solar</a>
+          <a href="/projects">Projects</a>
+          <a href="/why-lakshiv">Why Lakshiv</a>
+          <a href="/careers">Careers</a>
+          <a href="/contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section
+        aria-label="Lakshiv Technologies and Services"
+        class="hero"
+        id="home"
+      >
+        <img
+          alt="Approved Lakshiv Smart City Innovations hero: Smart Electrical, IoT and Smart Automation, and Solar Energy"
+          src="assets/lakshiv-approved-smart-city-hero.png"
+        />
+      </section>
+
+      <section class="section" id="verticals">
+        <div class="wrap">
+          <div class="eyebrow">Three Verticals. One Integrated Vision.</div>
+
+          <h2>
+            Integrated Solutions for a Smarter, Safer &amp; Sustainable World.
+          </h2>
+
+          <p class="lead">
+            We bring together IoT &amp; Smart Automation, Smart Electrical
+            Solutions, and Solar Energy Systems to deliver connected,
+            intelligent, and energy-efficient solutions. Each vertical
+            complements the others, combining technology innovation, engineering
+            expertise, and on-ground execution to create greater value for
+            residential, commercial, and industrial customers.
+          </p>
+
+          <div class="cards">
+            <article class="card">
+              <img
+                alt="Industrial IoT monitoring and automation"
+                src="assets/vertical-1.webp"
+              />
+
+              <div class="card-body">
+                <span class="number">01 / TECHNOLOGY</span>
+
+                <h3>
+                  IoT Products, Real-Time Monitoring &amp; Smart Automation
+                </h3>
+
+                <p>
+                  Intelligent IoT and IIoT products, connected monitoring,
+                  dashboards, mobile applications, and automation that turn
+                  real-world data into actionable insights.
+                </p>
+
+                <div class="tags">
+                  <span>IoT &amp; IIoT</span><span>Real-Time Monitoring</span
+                  ><span>Dashboards</span><span>Automation</span>
+                </div>
+
+                <a class="inline-link" href="/products"
+                  >Explore Products &amp; Applications →</a
+                >
+              </div>
+            </article>
+
+            <article class="card">
+              <img
+                alt="Complete smart home ecosystem and mobile controls"
+                src="assets/vertical-2.webp"
+              />
+
+              <div class="card-body">
+                <span class="number">02 / ENGINEERING</span>
+
+                <h3>Smart Homes – Electrical Consultancy &amp; Execution</h3>
+
+                <p>
+                  Complete smart-home and electrical ecosystems: consultancy,
+                  design, infrastructure, lighting and appliance control, energy
+                  monitoring, integration, and on-site execution.
+                </p>
+
+                <div class="tags">
+                  <span>Electrical Design</span><span>Smart Homes</span
+                  ><span>Energy Monitoring</span><span>Execution</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <img
+                alt="Solar PV panels in sunlight"
+                src="assets/vertical-3.webp"
+              />
+
+              <div class="card-body">
+                <span class="number">03 / CLEAN ENERGY</span>
+
+                <h3>Solar Energy Solutions &amp; Project Execution</h3>
+
+                <p>
+                  Solar PV consultancy, system design, installation,
+                  commissioning, and performance monitoring, integrated with
+                  intelligent electrical and automation infrastructure.
+                </p>
+
+                <div class="tags">
+                  <span>Solar PV Design</span><span>Installation</span
+                  ><span>Commissioning</span><span>Integration</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section solar-band" id="solar">
+        <div class="wrap solar-grid">
+          <div>
+            <div class="eyebrow" style="color: #89f4a4">
+              Solar Energy Solutions
+            </div>
+
+            <h2>Powering a Smarter, Greener Tomorrow</h2>
+
+            <p>
+              From solar consultancy and system design to installation,
+              commissioning, and intelligent energy monitoring, Lakshiv brings
+              engineering expertise and connected technology together to deliver
+              efficient solar energy solutions.
+            </p>
+
+            <a class="btn" href="/solar">Explore Solar Solutions →</a>
+          </div>
+
+          <img
+            alt="Solar photovoltaic energy installation"
+            src="assets/vertical-3.webp"
+          />
+        </div>
+      </section>
+
+      <section class="section home-links">
+        <div class="wrap">
+          <div class="eyebrow">Discover Lakshiv</div>
+
+          <h2>Explore Our Approach &amp; Applications</h2>
+
+          <p class="lead">
+            Learn what drives Lakshiv and explore where our integrated solutions
+            can be applied.
+          </p>
+
+          <div class="home-link-grid">
+            <a class="home-link-card" href="/why-lakshiv"
+              ><h3>Why Lakshiv</h3>
+
+              <p>Our purpose, mission and engineering capabilities.</p>
+
+              <strong>Learn more →</strong></a
+            ><a class="home-link-card" href="/projects"
+              ><h3>Projects &amp; Applications</h3>
+
+              <p>
+                Commercial, residential, healthcare and institutional
+                environments.
+              </p>
+
+              <strong>Explore applications →</strong></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="career-strip">
+            <div>
+              <h2>Build Your Career with Lakshiv</h2>
+
+              <p>
+                Opportunities for junior software engineers and enthusiastic
+                freshers.
+              </p>
+            </div>
+
+            <a class="btn" href="/careers">View Open Positions →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer-contact">
+      <div class="wrap">
+        <div class="foot">
+          <div>
+            <img
+              alt="Lakshiv Technologies and Services"
+              class="footer-logo"
+              src="assets/lakshiv-original-logo.png"
+            />
+
+            <p>Three Verticals. One Integrated Vision.</p>
+
+            <p>Building a Smarter, Greener &amp; More Connected Tomorrow.</p>
+          </div>
+
+          <div>
+            <h3>Office Address</h3>
+
+            <address>
+              #304, Third Floor,<br />SV Landmark Building,<br />Bollaram to
+              Miyapur Main Road,<br />Near Volvo Bus Stop,<br />Bachupally,
+              Hyderabad,<br />Telangana – 500090, India.
+            </address>
+          </div>
+
+          <div>
+            <h3>Contact</h3>
+
+            <p><a href="tel:+919848477789">+91 98484 77789</a></p>
+
+            <p><a href="mailto:info@lakshiv.co.in">info@lakshiv.co.in</a></p>
+
+            <p><a href="/contact">Contact page</a></p>
+
+            <p><a href="/solar">Solar Solutions</a></p>
+
+            <p><a href="/careers">Careers</a></p>
+          </div>
+        </div>
+
+        <div class="copyright">
+          © <span id="year">2026</span> Lakshiv Technologies and Services. All
+          rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const b = document.querySelector(".menu"),
+        l = document.querySelector(".links");
+
+      b.addEventListener("click", () => {
+        const o = l.classList.toggle("open");
+
+        b.setAttribute("aria-expanded", String(o));
+      });
+
+      l.querySelectorAll("a").forEach((a) =>
+        a.addEventListener("click", () => {
+          l.classList.remove("open");
+
+          b.setAttribute("aria-expanded", "false");
+        }),
+      );
+    </script>
+
+    <script>
+      (function () {
+        const header = document.querySelector("header");
+
+        if (!header) return;
+
+        function updateHeroHeight() {
+          document.documentElement.style.setProperty(
+            "--home-header-height",
+
+            Math.ceil(header.getBoundingClientRect().height) + "px",
+          );
+        }
+
+        updateHeroHeight();
+
+        window.addEventListener("resize", updateHeroHeight);
+
+        if ("ResizeObserver" in window)
+          new ResizeObserver(updateHeroHeight).observe(header);
+      })();
+    </script>
+  </body>
+</html>
